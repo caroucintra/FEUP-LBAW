@@ -2,12 +2,14 @@
 This document corresponds to a specification of the elements in a database that stores all the information of an online auction service. 
 
 ## A4: Conceptual Data Model
-!!!!!!!!! Brief presentation of the artefact goals.
+The Identification and Description of Entities and Relationships that are Significant to the Database Specification are covered in the Conceptual Data Model.
+The model is documented using a UML class diagram.
+To avoid overloading the diagram too early in the development, the class diagram is built by first including only the classes and their relationships. More details, such as class attributes, attribute domains, multiplicity of relationships, and additional OCL restrictions, are incorporated in subsequent versions.
 
 ### 1. Class diagram
-UML class diagram containing the classes, associations, multiplicity and roles.
-For each class, the attributes, associations and constraints are included in the class diagram.
+The key organizational entities, their relationships, attributes and their domains, and the multiplicity of relationships for the The Absolute Artion are presented in the UML diagram in Figure 1.
 
+Fig 1
 
 ### 2. Additional Business Rules
 Business rules can be included in the UML diagram as UML notes or in a table in this section.
