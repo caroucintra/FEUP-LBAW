@@ -1,16 +1,35 @@
 # EBD: Database Specification Component
-This document corresponds to a specification of the elements in a database that stores all the information of an online auction service. 
+This document corresponds to a specification of the elements in a database that stores all the information of an online auction service. The modularization was conceptualized to make every information independent from the rest of the database components.
 
 ## A4: Conceptual Data Model
 !!!!!!!!! Brief presentation of the artefact goals.
 
 ### 1. Class diagram
-UML class diagram containing the classes, associations, multiplicity and roles.
-For each class, the attributes, associations and constraints are included in the class diagram.
 
-
+Notes:
+- Especification of relations between classes:
+    1. Transactions will be between a user and the platform, whenever they need to cash in and out the website. Every transaction will need an admin's approval.
+    2. Users can follow and rate other users.
+    3. A comment is made by a user on an auction.
+    4. An auction is associated with exactly one item and that item can be associated to one or more categories.
+    5. Auctions have multiple followers and only one owner.
+    6. Bids are made on a specific auction, by one user.
+- When an auction ends, the platform has access to its greatest bid (that is updated when a ned bid is made), and through that, the bidder.
+- Users that will be notificated on each event:
+    1. New Bid: All auction's followers
+    2. Auction Action: All auction's followers
+    3. New Auction: All user's (auction owner) followers
+    4. New Comment: All auction's followers
+  
 ### 2. Additional Business Rules
 Business rules can be included in the UML diagram as UML notes or in a table in this section.
+- BR1: Authenticated User cannot bid on their own auction.
+- BR2: The action of bidding is only done when the user has credit on their account and when the bid is validated, that money is secured so that that bidder can't spend it in other auctions. After a new bid on that specific auction, the money becomes free to spend on other 
+- BR3: The transactions between the site and the user are done through bank transfer and are only validated after an Admin has verify it. Those transfers are mainly: from the user's bank account to their own Absolute Artion credit and cashing out the credit they have accumulated.
+- BR4: A user can become an auction follower if they have made an action on that auction (bidding or commenting) or manually.
+- BR5: Auctions can be canceled by users (auction owner or admin) through specific conditions, but never deleted from the database.
+- BR6: Only users who have won an auction can rate the auction's owner.
+- BR7: Users cannot follow or rate themselves.
 
 A5: Relational Schema, validation and schema refinement
 Brief presentation of the artefact goals.
@@ -107,13 +126,14 @@ This code should also be included in the group's git repository and links added 
 
 A.1. Database schema
 A.2. Database population
+
 Revision history
 Changes made to the first submission:
 
-Item 1
-..
-GROUP21gg, DD/MM/2021
 
-Group member 1 name, email (Editor)
-Group member 2 name, email
-...
+**GROUP2184**, 18/11/2021
+
+Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt<br>
+Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt<br>
+Group member 3: João Gabriel Ferreira Alves, up201810087@fc.up.pt<br>
+Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt (Editor)

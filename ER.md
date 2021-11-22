@@ -6,9 +6,8 @@ This proposal corresponds to an information system with a web interface to suppo
 
 A platform inspired by Vinted that allows different users to sell and buy handmade unique pieces in a real time auction. The auction model we chose is Absolute Auction, which means highest bid wins regardless of price and the current highest bidder can't bid until someone else does. Although the deadlines are previously stablished, they can be extended by 30 minutes when a new bid is made in the last 15 minutes. Users can search items by price, color, type of item or username. Our project has categorized users, depending on their permissions. 
 1. Unauthenticated users (guests) are allowed to search for auctions and auctioneer profiles, explore the web page by browsing, but can't participate on auctions or create new ones.
-2. Authenticated regular users can create auctions to sell their work and or participate on other users auctions. By following or having an auction, the user will receive notifications on new bids, approaching deadline, the end of the auction and the winner. The auction followers are also notificated when it is canceled (by the owner or an administrator). Users may follow each other to receive notifications on new posts. Another functionality is to check their bidding history and followed auctions as well as choose to share those with other users. In their personal page will be a section with all of their live auctions, which they can edit, cancel (if there's no bid yet) and manage status. The user can only bid if there is a credit card associated to their account, so if they win the auction, the money is directly discounted from the card. Regular users have a limit number of bids per auction, can only participate on 5 auctions at a time and have a maximum of 5 live auctions associated to their account. All bidders can rate the seller, view previous biddings on a particular auction and report inappropriate content.
-3. Authenticated premium users can do all that a regular user can, without the limits on bids and live posts.
-4. Administrators are user accounts that can't participate on or create new auctions, but are responsible for manegement actions of The Absolute Artion. Those can stop auctions, block user accounts, or delete reported actions.
+2. Authenticated users can create auctions to sell their work and or participate on other users auctions. By following or having an auction, the user will receive notifications on new bids, approaching deadline, the end of the auction and the winner. The auction followers are also notified when it is canceled (by the owner or an administrator). Users may follow each other to receive notifications on new posts. Another functionality is to check their bidding history and followed auctions as well as choose to share those with other users. In their personal page will be a section with all of their live auctions, which they can edit, cancel (if there's no bid yet) and manage status. The user can only bid if there is credit associated to their account, so if they win the auction, the money is directly discounted from that credit and cashed in the artist's account. All bidders can rate the seller, view previous biddings on a particular auction and report inappropriate content.
+3. Administrators are user accounts that can't participate on or create new auctions, but are responsible for manegement actions of The Absolute Artion. Those can stop auctions, block user accounts, or delete reported actions.
 
 Our goal with this project is to create a platform where artists can promote their art ranging from paintings to jewellery and even clothing. We think that kind of work is being forgotten with the rising of fast fashion and industrialisation. Altough there are a lot of other platforms that allow this online transactions, our project will prioratize connecting artists to enthusiasts.
 
@@ -186,6 +185,12 @@ We plan on implementing the pages for the Auction Details (UI14) and User Profil
 ![](/Pictures/userprofile.png)
 *Figure 3: User Profile Page*
 
+## Revision history
+Changes made to the first submission:
+- User's credit card information is now a credit account specific for the site, that can be cashed in and out.
+- Information regarding Regular/Premium users was deleted, since that feature is not gonna be implemented for now.
+
+Item 1
 
 **GROUP2184**, 08/11/2021
 
