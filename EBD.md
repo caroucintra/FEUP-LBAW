@@ -14,10 +14,10 @@ Fig 1
 ### 2. Additional Business Rules
 Business rules can be included in the UML diagram as UML notes or in a table in this section.
 
-A5: Relational Schema, validation and schema refinement
+##A5: Relational Schema, validation and schema refinement
 Brief presentation of the artefact goals.
 
-1. Relational Schema
+### 1. Relational Schema
 The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.
 Relation schemas are specified in the compact notation:
 
@@ -26,13 +26,14 @@ R01	Table1(id, attribute NN)
 R02	Table2(id, attribute → Table1 NN)
 R03	Table3(id1, id2 → Table2, attribute UK NN)
 R04	Table4((id1, id2) → Table3, id3, attribute CK attribute > 0)
-2. Domains
+3. Schema validation
+###2. Domains
 The specification of additional domains can also be made in a compact form, using the notation:
 
 Domain Name	Domain Specification
 Today	DATE DEFAULT CURRENT_DATE
 Priority	ENUM ('High', 'Medium', 'Low')
-3. Schema validation
+### 3. Schema validation
 To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.
 
 TABLE R01	User
