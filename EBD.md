@@ -41,11 +41,8 @@ Business rules can be included in the UML diagram as UML notes or in a table in 
 The Relational Schema derived from the Conceptual Data Model is contained in this item. Each relation schema, attributes, domains, primary keys, foreign keys, and other integrity rules are all contained in the Relational Schema: UNIQUE, DEFAULT, NOT NULL, CHECK.
 
 ### 1. Relational Schema
-| Relation Reference | Relation Compact Notation                                                                                                                            
-
-|
+| Relation Reference | Relation Compact Notation                                                                                                                           |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 |
 | R01                |  Authenticated_User(id, email U NN, username U NN, password NN, Name NN, date_of_birth NN Today - date_of_birth >17 years, address, admin_permission NN, credit DF 0.00) 
 |
