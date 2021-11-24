@@ -60,8 +60,9 @@ CK = CHECK.
 ### 2. Domains
 The specification of the additional domain.
 
-Domain Name	Domain Specification
-Today	DATE DEFAULT CURRENT_DATE
+| Domain Name |	Domain Specification      |
+|-------------|---------------------------|
+| Today	      | DATE DEFAULT CURRENT_DATE |
 
 ### 3. Schema validation
 To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.
