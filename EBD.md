@@ -42,6 +42,7 @@ The Relational Schema derived from the Conceptual Data Model is contained in thi
 
 ### 1. Relational Schema
 | R01 |  Authenticated_User(id, email U NN, username U NN, password NN, Name U NN, date_of_birth NN Today - date_of_birth >17, address, admin_permission NN, credit DF 0.00) |
+|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | R02 |  Auction(id, initial_price NN, name NN, deadline NN, greatest_bid NN)                                                                                                |
 | R03 |  Item(id,name NN, description NN, image, id_Category -> Category NN)                                                                                                 |
 | R04 |  Bid(id, id_Auction -> Auction value NN CK value > greatest_bid)                                                                                                     |
