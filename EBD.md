@@ -41,7 +41,8 @@ Business rules can be included in the UML diagram as UML notes or in a table in 
 The Relational Schema derived from the Conceptual Data Model is contained in this item. Each relation schema, attributes, domains, primary keys, foreign keys, and other integrity rules are all contained in the Relational Schema: UNIQUE, DEFAULT, NOT NULL, CHECK.
 
 ### 1. Relational Schema
-| Relation Reference | Relation Compact Notation                                                                                                                                                 
+| Relation Reference | Relation Compact Notation                                                                                                                            
+
 |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -58,7 +59,7 @@ The Relational Schema derived from the Conceptual Data Model is contained in thi
 |
 | R06                |  Comment(id, text NN, date Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           
 |
-| R07                |  Transaction(id, value NN CK value > 0, method NN, typeTransaction NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell || buy id_Auction NN)                                                                                                                     
+| R07                |  Transaction(id, value NN CK value > 0, method NN, typeTransaction NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell ou buy id_Auction NN)                                                                                                                     
 |
 | R08                |  Notification(id, type_notification NN, text NN, id_user -> Authenticated_User)                                                                                           
 |
