@@ -38,24 +38,29 @@ Business rules can be included in the UML diagram as UML notes or in a table in 
 - BR7: Users cannot follow or rate themselves.
 
 ## A5: Relational Schema, validation and schema refinement
-Brief presentation of the artefact goals.
+The Relational Schema derived from the Conceptual Data Model is contained in this item. Each relation schema, attributes, domains, primary keys, foreign keys, and other integrity rules are all contained in the Relational Schema: UNIQUE, DEFAULT, NOT NULL, CHECK.
 
 ### 1. Relational Schema
-The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.
-Relation schemas are specified in the compact notation:
-
 Relation reference	Relation Compact Notation
-R01	Table1(id, attribute NN)
-R02	Table2(id, attribute → Table1 NN)
-R03	Table3(id1, id2 → Table2, attribute UK NN)
-R04	Table4((id1, id2) → Table3, id3, attribute CK attribute > 0)
+R01	Authenticated_User(id, email U NN, username U NN, password NN, Name U NN, date_of_birth NN Today - date_of_birth >17, address, admin_permission NN, credit DF 0.00)
+R02	Auction(id, initial_price NN, name NN, deadline NN, greatest_bid NN)
+R03	item(id,name NN, description NN, image, id_Category -> Category NN)
+R04	Bid(id, id_Auction -> Auction value NN CK value > greatest_bid)
+R05 Category(id, name U NN)
+R06 Comment(id, text NN)
+R07 Transaction(id, value NN CK value > 0)
+
+Legend:
+U = UNIQUE
+NN = NOT NULL
+DF = DEFAULT
+CK = CHECK.
 
 ### 2. Domains
-The specification of additional domains can also be made in a compact form, using the notation:
+The specification of the additional domain.
 
 Domain Name	Domain Specification
 Today	DATE DEFAULT CURRENT_DATE
-Priority	ENUM ('High', 'Medium', 'Low')
 
 ### 3. Schema validation
 To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.
