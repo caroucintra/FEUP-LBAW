@@ -69,10 +69,12 @@ For The Absolute Artion system, consider the user stories that are presented in 
 | US23       | Delete Account       | High     | As an _Authenticated User_, I want to be able to delete my account so that my profile doesn't publicly exist anymore.           |
 | US24       | View Profile         | High     | As an _Authenticated User_, I want to view my own profile so that I know what is displayed to other people.                        |
 | US25       | Follow Auctions      | Medium   | As an _Authenticated User_, I want to follow auctions so that I am notified when there's new actions regarding them.                        |
-| US26       | Follow Other Profiles| Medium   | As an _Authenticated User_, I want to follow other users so that I can keep myself updated on their actions. |
-| US27       | Comment              | Low      | As an _Authenticated User_, I want to comment on auctions so that I can share my opinion. |
-| US28       | Edit Comment         | Low      | As an _Authenticated User_, I want to edit my comments so that I fix a possible mistake. |
-| US29       | Delete Comment       | Low      | As an _Authenticated User_, I want to delete a comment in case I don't it to be public anymore. |
+| US26       |  See Notifications       | Medium      | As an _Authenticated User_, I want to be able to see my notifications in order to be updated on aactions on the site. |
+| US27       | Follow Other Profiles| Medium   | As an _Authenticated User_, I want to follow other users so that I can keep myself updated on their actions. |
+| US28       | Comment              | Low      | As an _Authenticated User_, I want to comment on auctions so that I can share my opinion. |
+| US29       | Edit Comment         | Low      | As an _Authenticated User_, I want to edit my comments so that I fix a possible mistake. |
+| US30       | Delete Comment       | Low      | As an _Authenticated User_, I want to delete a comment in case I don't it to be public anymore. |
+
 
 *Table 4 - Authenticated User user stories*
 
@@ -95,8 +97,7 @@ For The Absolute Artion system, consider the user stories that are presented in 
 | US41       | Create Auctions       | High     | As an _Auctioneer_, I want to be able to create auctions so that I can use the platform to sell my items.                                |
 | US42       | Edit Auctions         | High     | As an _Auctioneer_, I want to be able to edit live auctions so that I can update information if needed.                                  |
 | US43       | Cancel Auctions       | High     | As an _Auctioneer_, I want to be able cancel my auctions if no one has made a bid on it yet, in case I no longer want to sell that item. |
-| US44       | Delete Auctions       | High     | As an _Auctioneer_, I want to be able delete my auctions after it is done so that post is no longer linked to my account. |
-| US45       | Receive Notifications | Medium     | As an _Auctioneer_, I want to receive notifications so that I am up to date with my live auctions.                                       |
+| US44       | Receive Notifications | Medium     | As an _Auctioneer_, I want to receive notifications so that I am up to date with my live auctions.                                       |
 
 *Table 6 - Auctioneer user stories*
 
@@ -189,6 +190,7 @@ We plan on implementing the pages for the Auction Details (UI14) and User Profil
 Changes made to the first submission:
 - User's credit card information is now a credit account specific for the site, that can be cashed in and out.
 - Information regarding Regular/Premium users was deleted, since that feature is not gonna be implemented for now.
+- User is no longer able to delete auctions.
 
 Item 1
 
