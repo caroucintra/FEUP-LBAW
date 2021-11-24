@@ -40,23 +40,15 @@ Business rules can be included in the UML diagram as UML notes or in a table in 
 ## A5: Relational Schema, validation and schema refinement
 The Relational Schema derived from the Conceptual Data Model is contained in this item. Each relation schema, attributes, domains, primary keys, foreign keys, and other integrity rules are all contained in the Relational Schema: UNIQUE, DEFAULT, NOT NULL, CHECK.
 
-
-Exemplo   | Valor do exemplo
---------- | ------
-Exemplo 1 | R$ 10
-Exemplo 2 | R$ 8
-Exemplo 3 | R$ 7
-Exemplo 4 | R$ 8
-
 ### 1. Relational Schema
 
-R01 | Authenticated_User(id, email U NN, username U NN, password NN, Name U NN, date_of_birth NN Today - date_of_birth >17, address, admin_permission NN, credit DF 0.00)
-R02	| Auction(id, initial_price NN, name NN, deadline NN, greatest_bid NN)
-R03	| Item(id,name NN, description NN, image, id_Category -> Category NN)
-R04	| Bid(id, id_Auction -> Auction value NN CK value > greatest_bid)
-R05 | Category(id, name U NN)
-R06 | Comment(id, text NN)
-R07 | Transaction(id, value NN CK value > 0)
+R01 | R$ Authenticated_User(id, email U NN, username U NN, password NN, Name U NN, date_of_birth NN Today - date_of_birth >17, address, admin_permission NN, credit DF 0.00)
+R02	| R$ Auction(id, initial_price NN, name NN, deadline NN, greatest_bid NN)
+R03	| R$ Item(id,name NN, description NN, image, id_Category -> Category NN)
+R04	| R$ Bid(id, id_Auction -> Auction value NN CK value > greatest_bid)
+R05 | R$ Category(id, name U NN)
+R06 | R$ Comment(id, text NN)
+R07 | R$ Transaction(id, value NN CK value > 0)
 
 Legend:
 U = UNIQUE
