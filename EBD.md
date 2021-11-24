@@ -43,13 +43,25 @@ The Relational Schema derived from the Conceptual Data Model is contained in thi
 ### 1. Relational Schema
 | Relation Reference | Relation Compact Notation                                                                                                                                                 |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R01                |  Authenticated_User(id, email U NN, username U NN, password NN, Name U NN, date_of_birth NN Today - date_of_birth >17, address, admin_permission NN, credit DF 0.00) |
-| R02                |  Auction(id, initial_price NN, name NN, deadline NN, greatest_bid NN)                                                                                                     |
-| R03                |  Item(id,name NN, description NN, image, id_Category -> Category NN)                                                                                                       |
-| R04                |  Bid(id, id_Auction -> Auction value NN CK value > greatest_bid)                                                                                                           |
-| R05                |  Category(id, name U NN)                                                                                                                                                   |
-| R06                |  Comment(id, text NN)                                                                                                                                                     |
-| R07                |  Transaction(id, value NN CK value > 0)                                                                                                                                   |
+| R01                |  Authenticated_User(id, email U NN, username U NN, password NN, Name NN, date_of_birth NN Today - date_of_birth >17 years, address, admin_permission NN, credit DF 0.00) 
+|
+| R02                |  Auction(id, initial_price NN, name NN, id_category -> category, deadline NN, greatest_bid NN)                                                                             
+|
+| R03                |  Image(id, image, id_auction -> Auction)                                                                                                                                         
+|
+| R04                |  Bid(id, id_Auction -> Auction value NN CK value > greatest_bid, id_user -> Authenticated_User)                                                                           
+|
+| R05                |  Category(id, name U NN)                                                                                                                                                   
+|
+| R06                |  Comment(id, text NN, date Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           
+|
+| R07                |  Transaction(id, value NN CK value > 0, method NN, typeTransaction NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell || buy id_Auction NN)                                                                                                                     
+|
+| R08                |  Notification(id, type_notification NN, text NN, id_user -> Authenticated_User)                                                                                           
+|
+| R09                |  Review(id, id_user -> Authenticated_User, id_user -> Authenticated_User, text DF "", rating >= 0 && <=5 DF 0)                                                                                        
+|
+
 
 Legend:
 U = UNIQUE
