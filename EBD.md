@@ -51,7 +51,7 @@ The Relational Schema derived from the Conceptual Data Model is contained in thi
 | R06                |  Comment(id, text NN, date Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           |
 | R07                |  Transaction(id, value NN CK value > 0, method NN, typeTransaction NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell ou buy id_Auction NN)                                                                                                                     |
 | R08                |  Notification(id, type_notification NN, text NN, id_user -> Authenticated_User)                                                                                           |
-| R09                |  Review(id, id_user -> Authenticated_User, id_user -> Authenticated_User, text DF "", rating >= 0 && <=5 DF 0)                                                                                        |
+| R09                |  Review(id, id_reviewed -> Authenticated_User, id_reviewer -> Authenticated_User, text DF "", rating >= 0 && <=5 DF 0)                                                                                        |
 
 
 Legend:
