@@ -48,10 +48,10 @@ The Relational Schema derived from the Conceptual Data Model is contained in thi
 | R02                |  Auction(id, initial_price NN, name NN, id_category -> category, deadline NN, greatest_bid NN)                                                      |
 | R03                |  Image(id, image, id_auction -> Auction)                                                                                                |
 | R04                |  Bid(id, id_Auction -> Auction value NN CK value > greatest_bid, id_user -> Authenticated_User)                                         |
-| R05                |  Category(id, name U NN)                                                                                                                                                  |
-| R06                |  Comment(id, text NN, date Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           |
-| R07                |  Transaction(id, value NN CK value > 0, method NN, typeTransaction NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell ou buy id_Auction NN)                                                                                                                     |
-| R08                |  Notification(id, type_notification NN, text NN, id_user -> Authenticated_User)                                                                                           |
+| R05                |  Category(id, type IN category_name NN DF "Other")                                                                                                                                             |
+| R06                |  Comment(id, text NN, date DF Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           |
+| R07                |  Transaction(id, value NN CK value > 0, method NN, type IN transaction_type NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell ou buy id_Auction NN)                                                                                                                     |
+| R08                |  Notification(id, type IN notification_type NN, text NN, id_user -> Authenticated_User)                                                                                           |
 | R09                |  Review(id, id_reviewed -> Authenticated_User, id_reviewer -> Authenticated_User, text DF "", rating >= 0 && <=5 DF 0)                                                                                        |
 
 
@@ -67,6 +67,9 @@ The specification of the additional domain.
 | Domain Name |	Domain Specification      |
 |-------------|---------------------------|
 | Today	      | DATE DEFAULT CURRENT_DATE |
+| notification_type	      | ENUM ('New Follower', 'Auction Action', 'New Auction', 'New Bid', 'New Comment') |
+| transaction_type	      | ENUM ('Sell', 'Buy', 'Deposit', 'Debit') |
+| category_name	      | ENUM ('Clothing', 'Painting', 'Jewelry', 'Sculpture', 'Furniture', 'Accessories', 'Other') |
 
 ### 3. Schema validation
 To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.

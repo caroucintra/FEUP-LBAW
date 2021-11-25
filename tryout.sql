@@ -10,7 +10,6 @@ CREATE TYPE transaction_type AS ENUM ('Sell', 'Buy', 'Deposit', 'Debit');
 -- Tables
 -----------------------------------------
 
-
 DROP TABLE IF EXISTS authenticated_user;
 CREATE TABLE authenticated_user (
     id SERIAL PRIMARY KEY,
@@ -33,8 +32,8 @@ CREATE TABLE authenticated_user (
 
 DROP TABLE IF EXISTS user_follow;
 CREATE TABLE follow (
-    follower_id REFERENCES authenticated_user(id) NOT NULL,
-    followed_id REFERENCES authenticated_user(id) NOT NULL,
+    follower_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
+    followed_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
 
     PRIMARY KEY (follower_id, followed_id)
 );
@@ -60,8 +59,8 @@ CREATE TABLE auction (
 
 DROP TABLE IF EXISTS auction_follow;
 CREATE TABLE follow (
-    follower_id REFERENCES authenticated_user(id) NOT NULL,
-    auction_id REFERENCES auction(id) NOT NULL,
+    follower_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
+    auction_id REFERENCES auction(id) NOT NULL ON UPDATE CASCADE,
 
     PRIMARY KEY (follower_id, auction_id)
 );
@@ -79,8 +78,8 @@ CREATE TABLE bid (
     bid_date TIMESTAMP WITH TIME ZONE DEFAULT now(),
     winner BOOL DEFAULT FALSE,
 
-    auction REFERENCES auction(id) NOT NULL,
-    bidder REFERENCES authenticated_user(id) NOT NULL,
+    auction REFERENCES auction(id) NOT NULL ON UPDATE CASCADE,
+    bidder REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
 
     CONSTRAINT valid_value check (bid_value > auction.greatest_bid.bid_value)
     CONSTRAINT valid_bid check (bidder.credit >= bid_value)
@@ -88,8 +87,8 @@ CREATE TABLE bid (
 
 DROP TABLE IF EXISTS auction_category;
 CREATE TABLE item (
-    auction_id REFERENCES auction(id) NOT NULL,
-    category_id REFERENCES category(id) NOT NULL,
+    auction_id REFERENCES auction(id) NOT NULL ON UPDATE CASCADE,
+    category_id REFERENCES category(id) NOT NULL ON UPDATE CASCADE,
     
     PRIMARY KEY (auction_id, category_id)
 );
@@ -97,7 +96,7 @@ CREATE TABLE item (
 DROP TABLE IF EXISTS comment;
 CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
-    auction_id REFERENCES auction(id) NOT NULL,
+    auction_id REFERENCES auction(id) NOT NULL ON UPDATE CASCADE,
     comment_text NOT NULL,
     comment_date TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
@@ -105,11 +104,11 @@ CREATE TABLE comment (
 DROP TABLE IF EXISTS money_transaction;
 CREATE TABLE money_transaction (
     id SERIAL PRIMARY KEY,
-    user_id REFERENCES authenticated_user(id) NOT NULL,
-    admin_id REFERENCES authenticated_user(id) NOT NULL,
+    user_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
+    admin_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
     transaction_value FLOAT NOT NULL,
     TYPE transaction_type NOT NULL,
-    auction_id REFERENCES auction(id),
+    auction_id REFERENCES auction(id) ON UPDATE CASCADE,
 
     CONSTRAINT minimum_transaction check (transaction_value > 0),
     CONSTRAINT valid_transaction check (
@@ -128,11 +127,11 @@ CREATE TABLE item_image (
 DROP TABLE IF EXISTS user_notification;
 CREATE TABLE user_notification (
     id SERIAL PRIMARY KEY,
-    user_id REFERENCES authenticated_user(id) NOT NULL,
+    user_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
     TYPE notification_type NOT NULL,
-    auction_id REFERENCES auction(id),
-    follower_id REFERENCES authenticated_user(id),
-    comment_id REFERENCES comment(id),
+    auction_id REFERENCES auction(id) ON UPDATE CASCADE,
+    follower_id REFERENCES authenticated_user(id) ON UPDATE CASCADE,
+    comment_id REFERENCES comment(id) ON UPDATE CASCADE,
     bid_id REFERENCES bid(id),
     
     CONSTRAINT valid_notification check (
@@ -147,8 +146,8 @@ CREATE TABLE user_notification (
 DROP TABLE IF EXISTS review;
 CREATE TABLE review (
     id SERIAL PRIMARY KEY,
-    id_reviewer REFERENCES authenticated_user(id) NOT NULL,
-    id_reviewed REFERENCES authenticated_user(id) NOT NULL,
+    id_reviewer REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
+    id_reviewed REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
     review_text TEXT DEFAULT "",
     rating INTEGER DEFAULT 0,
 
@@ -207,7 +206,7 @@ CREATE TABLE loan (
 CREATE TABLE review (
    id_work INTEGER NOT NULL REFERENCES work (id) ON UPDATE CASCADE,
    id_users INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-   date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+   review_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
    comment TEXT NOT NULL,
    rating INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) OR (rating <= 5))),
    PRIMARY KEY (id_work, id_users)
