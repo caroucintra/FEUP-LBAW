@@ -2,7 +2,7 @@
 -- Types
 -----------------------------------------
 
-CREATE TYPE categories AS ENUM ('Clothing', 'Painting', 'Jewelry', 'Sculpture', 'Furniture', 'Accessories');
+CREATE TYPE category_name AS ENUM ('Clothing', 'Painting', 'Jewelry', 'Sculpture', 'Furniture', 'Accessories', 'Other');
 CREATE TYPE notification_type AS ENUM ('New Follower', 'Auction Action', 'New Auction', 'New Bid', 'New Comment');
 CREATE TYPE transaction_type AS ENUM ('Sell', 'Buy', 'Deposit', 'Debit');
 
@@ -24,13 +24,19 @@ CREATE TABLE authenticated_user (
     credit FLOAT DEFAULT 0,
     user_address TEXT,
 
-    CONSTRAINT minimum_age check ((DATEDIFF(DAY, date_of_birth, GetDate()) / 365.25) >= 18)
+    CONSTRAINT minimum_age check (
+        (date_part('year',now()::date-date_of_birth::date) +
+        date_part('month',now()::date-date_of_birth::date)/12 +
+        date_part('day',now()::date-date_of_birth::date)/365
+        ) >= 18)
 );
 
-DROP TABLE IF EXISTS follow;
+DROP TABLE IF EXISTS user_follow;
 CREATE TABLE follow (
     follower_id REFERENCES authenticated_user(id) NOT NULL,
-    followed_id REFERENCES authenticated_user(id) NOT NULL
+    followed_id REFERENCES authenticated_user(id) NOT NULL,
+
+    PRIMARY KEY (follower_id, followed_id)
 );
 
 DROP TABLE IF EXISTS auction;
@@ -41,33 +47,49 @@ CREATE TABLE auction (
     deadline TIMESTAMP WITH TIME ZONE NOT NULL,         -- TIMESTAMP WITH TIME ZONE '2004-10-19 10:23:54+02'
     greatest_bid REFERENCES bid(id),
     item_description TEXT NOT NULL,
+    auction_owner REFERENCES authenticated_user(id),
+
     ---- ver o equivalente de DATEDIFF para o postgres
-    CONSTRAINT valid_deadline check (DATEDIFF(minute, deadline, GetDate()) > 30)
+    CONSTRAINT valid_deadline check (
+        (date_part('month',deadline::date-now()::date)*43800+
+        date_part('day',deadline::date-now()::date)*1440+
+        date_part('hour',deadline::time-now()::time)*60+
+        date_part('minute',deadline::time-now()::time)
+        ) > 30)
+);
+
+DROP TABLE IF EXISTS auction_follow;
+CREATE TABLE follow (
+    follower_id REFERENCES authenticated_user(id) NOT NULL,
+    auction_id REFERENCES auction(id) NOT NULL,
+
+    PRIMARY KEY (follower_id, auction_id)
 );
 
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
-    TYPE categories NOT NULL
+    TYPE category_name DEFAULT 'Other'
 );
 
 DROP TABLE IF EXISTS bid;
 CREATE TABLE bid (
     id SERIAL PRIMARY KEY,
     bid_value FLOAT NOT NULL,
-    bid_date DATETIME DEFAULT,
+    bid_date TIMESTAMP WITH TIME ZONE DEFAULT now(),
     winner BOOL DEFAULT FALSE,
 
-    auction REFERENCES auction(id),
-    bidder REFERENCES authenticated_user(id),
+    auction REFERENCES auction(id) NOT NULL,
+    bidder REFERENCES authenticated_user(id) NOT NULL,
 
     CONSTRAINT valid_value check (bid_value > auction.greatest_bid.bid_value)
+    CONSTRAINT valid_bid check (bidder.credit >= bid_value)
 );
 
 DROP TABLE IF EXISTS auction_category;
 CREATE TABLE item (
-    auction_id REFERENCES auction(id),
-    category_id REFERENCES category(id),
+    auction_id REFERENCES auction(id) NOT NULL,
+    category_id REFERENCES category(id) NOT NULL,
     
     PRIMARY KEY (auction_id, category_id)
 );
@@ -75,6 +97,7 @@ CREATE TABLE item (
 DROP TABLE IF EXISTS comment;
 CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
+    auction_id REFERENCES auction(id) NOT NULL,
     comment_text NOT NULL,
     comment_date TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
@@ -82,28 +105,30 @@ CREATE TABLE comment (
 DROP TABLE IF EXISTS money_transaction;
 CREATE TABLE money_transaction (
     id SERIAL PRIMARY KEY,
-    user_id REFERENCES authenticated_user(id),
-    admin_id REFERENCES authenticated_user(id),
+    user_id REFERENCES authenticated_user(id) NOT NULL,
+    admin_id REFERENCES authenticated_user(id) NOT NULL,
     transaction_value FLOAT NOT NULL,
     TYPE transaction_type NOT NULL,
     auction_id REFERENCES auction(id),
 
     CONSTRAINT minimum_transaction check (transaction_value > 0),
     CONSTRAINT valid_transaction check (
-        ((transaction_type == 'Sell' || transaction_type == 'Buy') && auction_id NOT NULL) ||
-        ((transaction_type == 'Deposit'|| transaction_type == 'Debit') && auction_id NULL)
+        ((transaction_type == 'Sell' || transaction_type == 'Buy') && auction_id NOT NULL && admin_id NULL) ||
+        ((transaction_type == 'Deposit'|| transaction_type == 'Debit') && auction_id NULL && admin_id NOT NULL)
         ),
     CONSTRAINT valid_admin check (admin_id.admin_permission == TRUE)
 );
 
 DROP TABLE IF EXISTS item_image;
 CREATE TABLE item_image (
-    image_adress TEXT PRIMARY KEY
+    image_adress TEXT UNIQUE PRIMARY KEY,
+    auction_id REFERENCES auction(id) NOT NULL
 );
 
 DROP TABLE IF EXISTS user_notification;
 CREATE TABLE user_notification (
     id SERIAL PRIMARY KEY,
+    user_id REFERENCES authenticated_user(id) NOT NULL,
     TYPE notification_type NOT NULL,
     auction_id REFERENCES auction(id),
     follower_id REFERENCES authenticated_user(id),
@@ -122,8 +147,8 @@ CREATE TABLE user_notification (
 DROP TABLE IF EXISTS review;
 CREATE TABLE review (
     id SERIAL PRIMARY KEY,
-    id_reviewer REFERENCES authenticated_user(id),
-    id_reviewed REFERENCES authenticated_user(id),
+    id_reviewer REFERENCES authenticated_user(id) NOT NULL,
+    id_reviewed REFERENCES authenticated_user(id) NOT NULL,
     review_text TEXT DEFAULT "",
     rating INTEGER DEFAULT 0,
 

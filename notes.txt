@@ -1,0 +1,12 @@
+- triggers:
+	1. feito o bid -> tira o dinheiro da conta do bidder -> devolve o valor do bid anterior a conta do bidder anterior-> atualiza greatest_bid
+	2. deadline chega -> dinheiro é depositado na conta do vendedor -> vendedor deve enviar o produto -> comprador deve fazer a review
+	3. ação no auction -> user passa a seguir o auction automaticamente
+	4. ação no auction gera notificaçao a todos os seguidores
+	5. novo follow gera notificaçao ao user
+	6. novo bid gera notificacao a todos os seguidores do auction
+	7. novo comentario gera notificaçao a todos os seguidores do auction
+	8. novo auction gera notificacao a todos os seguidores do user
+	9. criaçao de um auction -> pede uma foto e uma categoria
+
+

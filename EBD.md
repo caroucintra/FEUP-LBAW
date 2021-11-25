@@ -13,15 +13,16 @@ The key organizational entities, their relationships, attributes and their domai
 Fig 1
 
 Notes:
-- Especification of relations between classes:
+- Specification of relations between classes:
     1. Transactions will be between a user and the platform, whenever they need to cash in and out the website. Every transaction will need an admin's approval.
-    2. Users can follow and rate other users.
+    2. A user can follow any other user and review the ones they won an auction from.
     3. A comment is made by a user on an auction.
-    4. An auction is associated with exactly one item and that item can be associated to one or more categories.
+    4. An auction is associated to one or more categories.
     5. Auctions have multiple followers and only one owner.
     6. Bids are made on a specific auction, by one user.
-- When an auction ends, the platform has access to its greatest bid (that is updated when a ned bid is made), and through that, the bidder.
-- Users that will be notificated on each event:
+    7. Users are notified by different events: a new follower, a new auction created by someone they follow and a new comment, bid or action (approaching deadline, end of the auction) on an auction they follow.
+- When an auction ends, the platform has access to its greatest bid (that is updated when a new bid is made), and through that, the bidder.
+- Users that will be notified on each event:
     1. New Bid: All auction's followers
     2. Auction Action: All auction's followers
     3. New Auction: All user's (auction owner) followers
