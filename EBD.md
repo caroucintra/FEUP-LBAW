@@ -74,63 +74,71 @@ The specification of the additional domain.
 ### 3. Schema validation
 To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.
 
-| **Table R01** (Authenticated_User)                                               |
-| **Keys:** {id}, {email}                                                          |
-| **Functional Dependencies**                                                      |
-| FD0101               | {id} -> {email, username, password, Name,
-date_of_birth, address, admin_permission, credit}                                  |
-| FD0102               |  {email} -> {id, username, password, Name,
-date_of_birth, address, admin_permission, credit                                   |
-| **Normal Form**      | BCNF                                                      |
+| **TABLE R01**                | Authenticated_User                                                                          |
+|------------------------------|---------------------------------------------------------------------------------------------|
+| **Keys:**                    | {id}, {email}                                                                               |
+| **Functional Dependencies:** |                                                                                             |
+| FD0101                       | {id} -> {email, username, password, Name, date_of_birth, address, admin_permission, credit} |
+| FD0102                       | {email} -> {id, username, password, Name, date_of_birth, address, admin_permission, credit} |
+| **Normal Form**              | BCNF                                                                                        |
 
-| **Table R02** (Auction)                                                          |
-| **Keys:** {id, id_category}                                                      |
-| **Functional Dependencies**                                                      |
-| FD0201               | {id} -> {initial_price, name, deadline, greatest_bid}     |
-| **Normal Form**      | BCNF                                                      |
+| **TABLE R02**                | Authenticated_User                                                                          |
+|------------------------------|---------------------------------------------------------------------------------------------|
+| **Keys:**                    | {id}, {email}                                                                               |
+| **Functional Dependencies:** |                                                                                             |
+| FD0201                       | {id} -> {email, username, password, Name, date_of_birth, address, admin_permission, credit} |
+| FD0102                       | {email} -> {id, username, password, Name, date_of_birth, address, admin_permission, credit} |
+| **Normal Form**              | BCNF                                                                                        |
 
-| **Table R03** (Image)                                                            |
-| **Keys:** {id, id_auction}                                                       |
-| **Functional Dependencies**                                                      |
-| FD0301               | {id} -> {image}                                           |
-| **Normal Form**      | BCNF                                                      |
-
-| **Table R04** (Bid)                                                              |
-| **Keys:** {id, id_Auction, id_user}                                              |
-| **Functional Dependencies**                                                      |
-| FD0401               | none                                                      |
-| **Normal Form**      | BCNF                                                      |
-
-| **Table R05** (Category)                                                         |
-| **Keys:** {id}                                                                   |
-| **Functional Dependencies**                                                      |
-| FD00501               | {id} -> {type}                                           |
-| **Normal Form**       | BCNF                                                     |
-
-| **Table R06** (Comment)                                                          |
-| **Keys:** {id, id_user, id_Auction}                                              |
-| **Functional Dependencies**                                                      |
-| FD00601               | {id} -> {text, date}                                     |
-| **Normal Form**       | BCNF                                                     |
-
-| **Table R07** (Transaction)                                                      |
-| **Keys:** {id, id_user, id_Auction}                                              |
-| **Functional Dependencies**                                                      |
-| FD00701               | {id} -> {value, method, type}                            |
-| **Normal Form**       | BCNF                                                     |
+| **TABLE R03**                | Image            |
+|------------------------------|------------------|
+| **Keys:**                    | {id, id_auction} |
+| **Functional Dependencies:** |                  |
+| FD0301                       | {id} -> {image}  |
+| **Normal Form**              | BCNF             |
 
 
-| **Table R08** (Notification)                                                     |
-| **Keys:** {id, id_user}                                                          |
-| **Functional Dependencies**                                                      |
-| FD00801               | {id} -> {type, text}                                     |
-| **Normal Form**       | BCNF                                                     |
+| **TABLE R04**                | Bid                       |
+|------------------------------|---------------------------|
+| **Keys:**                    | {id, id_Auction, id_user} |
+| **Functional Dependencies:** |                           |
+| FD0401                       | none                      |
+| **Normal Form**              | BCNF                      |
 
-| **Table R09** (Review)                                                           |
-| **Keys:** {id, id_reviewed}                                                      |
-| **Functional Dependencies**                                                      |
-| FD00901               | {id} -> {text, rating}                                   |
-| **Normal Form**       | BCNF                                                     |
+| **TABLE R05**                | Category       |
+|------------------------------|----------------|
+| **Keys:**                    | {id}           |
+| **Functional Dependencies:** |                |
+| FD0501                       | {id} -> {type} |
+| **Normal Form**              | BCNF           |
+
+| **TABLE R06**                | Comment                   |
+|------------------------------|---------------------------|
+| **Keys:**                    | {id, id_user, id_Auction} |
+| **Functional Dependencies:** |                           |
+| FD0601                       | {id} -> {text, date}      |
+| **Normal Form**              | BCNF                      |
+
+| **TABLE R07**                | Transaction                   |
+|------------------------------|-------------------------------|
+| **Keys:**                    | {id, id_user, id_Auction}     |
+| **Functional Dependencies:** |                               |
+| FD0701                       | {id} -> {value, method, type} |
+| **Normal Form**              | BCNF                          |
+
+| **TABLE R08**                | Notification         |
+|------------------------------|----------------------|
+| **Keys:**                    | {id, id_user}        |
+| **Functional Dependencies:** |                      |
+| FD0801                       | {id} -> {type, text} |
+| **Normal Form**              | BCNF                 |
+
+| **TABLE R09**                | Review                 |
+|------------------------------|------------------------|
+| **Keys:**                    | {id, id_reviewed}      |
+| **Functional Dependencies:** |                        |
+| FD0901                       | {id} -> {text, rating} |
+| **Normal Form**              | BCNF                   |
  
  
 ## A6: Indexes, triggers, transactions and database population
