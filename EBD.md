@@ -82,7 +82,7 @@ To validate the Relational Schema obtained from the Conceptual Model, all functi
 | FD0102                       | {email} -> {id, username, password, Name, date_of_birth, address, admin_permission, credit} |
 | **Normal Form**              | BCNF                                                                                        |
 
-| **TABLE R02**                | Authenticated_User                                                                          |
+| **TABLE R02**                | Auction                                                                                     |
 |------------------------------|---------------------------------------------------------------------------------------------|
 | **Keys:**                    | {id}, {email}                                                                               |
 | **Functional Dependencies:** |                                                                                             |
