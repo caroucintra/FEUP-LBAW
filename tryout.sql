@@ -31,7 +31,7 @@ CREATE TABLE authenticated_user (
 );
 
 DROP TABLE IF EXISTS user_follow;
-CREATE TABLE follow (
+CREATE TABLE user_follow (
     follower_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
     followed_id REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
 
@@ -46,7 +46,7 @@ CREATE TABLE auction (
     deadline TIMESTAMP WITH TIME ZONE NOT NULL,         -- TIMESTAMP WITH TIME ZONE '2004-10-19 10:23:54+02'
     greatest_bid REFERENCES bid(id),
     item_description TEXT NOT NULL,
-    auction_owner REFERENCES authenticated_user(id),
+    auction_owner REFERENCES authenticated_user(id) NOT NULL ON UPDATE CASCADE,
 
     ---- ver o equivalente de DATEDIFF para o postgres
     CONSTRAINT valid_deadline check (
