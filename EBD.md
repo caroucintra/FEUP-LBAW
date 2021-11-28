@@ -186,9 +186,10 @@ SQL code
 ### 3. Triggers
 User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values.
 
-Trigger	TRIGGER01
-Description	Trigger description, including reference to the business rules involved
-SQL code	
+|Trigger |	TRIGGER01 |
+|--------|------------|
+|Description|	Trigger description, including reference to the business rules involved |
+|SQL code	| 
 ### 4. Transactions
 Transactions needed to assure the integrity of the data.
 

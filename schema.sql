@@ -79,7 +79,7 @@ CREATE TABLE bid (
     winner BOOL DEFAULT FALSE,
 
     auction_id INTEGER NOT NULL REFERENCES auction(id) ON UPDATE CASCADE,
-    bidder_id INTEGER NOT NULL REFERENCES authenticated_user(id) ON UPDATE CASCADE
+    user_id INTEGER NOT NULL REFERENCES authenticated_user(id) ON UPDATE CASCADE
 );
 
  DROP TABLE IF EXISTS greatest_bid CASCADE;
@@ -101,6 +101,7 @@ CREATE TABLE auction_category (
 DROP TABLE IF EXISTS user_comment CASCADE;
 CREATE TABLE user_comment (
     id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES authenticated_user(id) ON UPDATE CASCADE,
     auction_id INTEGER NOT NULL REFERENCES auction(id) ON UPDATE CASCADE,
     comment_text TEXT NOT NULL,
     comment_date TIMESTAMP WITH TIME ZONE DEFAULT now()

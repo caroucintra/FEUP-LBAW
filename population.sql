@@ -24,7 +24,7 @@ INSERT INTO auction_category (auction_id, category_id) VALUES
     (1, 1),
     (1, 2);
 
-INSERT INTO bid (id, bid_value, auction_id, bidder_id) VALUES
+INSERT INTO bid (id, bid_value, auction_id, user_id) VALUES
     (1, 50.00, 1, 1);
 
 INSERT INTO greatest_bid (bid_id, auction_id) VALUES
