@@ -192,8 +192,6 @@ Changes made to the first submission:
 - Information regarding Regular/Premium users was deleted, since that feature is not gonna be implemented for now.
 - User is no longer able to delete auctions.
 
-Item 1
-
 **GROUP2184**, 08/11/2021
 
 Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt<br>

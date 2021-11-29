@@ -135,3 +135,29 @@ CREATE TRIGGER verify_admin
         EXECUTE PROCEDURE verify_admin();
 
 ----------------------------------
+
+
+-- PERCEBER SE ISTO DEVERIA SER UMA TRANSACTION
+DROP FUNCTION IF EXISTS notify_new_comment();
+CREATE FUNCTION notify_new_comment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+
+    FOR F IN (SELECT follower_id
+             FROM auction_follow
+             WHERE auction_id = NEW.auction_id)
+    LOOP INSERT INTO user_notification(user_id, type, comment_id) VALUES
+        (f.follower_id, 'New Comment', NEW.id);
+
+    RETURN NEW;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER notify_new_comment
+        AFTER INSERT OR UPDATE ON user_comment
+        FOR EACH ROW
+        EXECUTE PROCEDURE notify_new_comment();
+
+----------------------------------
