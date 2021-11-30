@@ -68,6 +68,7 @@ CREATE TABLE auction_follow (
 DROP TABLE IF EXISTS category CASCADE;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
+    auction_id INTEGER NOT NULL REFERENCES auction(id) ON UPDATE CASCADE,
     TYPE category_name DEFAULT 'Other'
 );
 
@@ -88,14 +89,6 @@ CREATE TABLE bid (
     auction_id INTEGER NOT NULL REFERENCES auction(id) ON UPDATE CASCADE,
 
     PRIMARY KEY (bid_id, auction_id)
-);
-
-DROP TABLE IF EXISTS auction_category CASCADE;
-CREATE TABLE auction_category (
-    auction_id INTEGER NOT NULL REFERENCES auction(id) ON UPDATE CASCADE,
-    category_id INTEGER NOT NULL REFERENCES category(id) ON UPDATE CASCADE,
-    
-    PRIMARY KEY (auction_id, category_id)
 );
 
 DROP TABLE IF EXISTS user_comment CASCADE;

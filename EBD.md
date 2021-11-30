@@ -2,13 +2,11 @@
 This document corresponds to a specification of the elements in a database that stores all the information of an online auction service. The modularization was conceptualized to make every information independent from the rest of the database components.
 
 ## A4: Conceptual Data Model
-The Identification and Description of Entities and Relationships that are Significant to the Database Specification are covered in the Conceptual Data Model.
-The model is documented using a UML class diagram.
-To avoid overloading the diagram too early in the development, the class diagram is built by first including only the classes and their relationships. More details, such as class attributes, attribute domains, multiplicity of relationships, and additional OCL restrictions, are incorporated in subsequent versions.
+This conceptual data model illustrates well our perspective of how the data will be stored so that the website works correctly.
 
 ### 1. Class diagram
 
-The key organizational entities, their relationships, attributes and their domains, and the multiplicity of relationships for the The Absolute Artion are presented in the UML diagram in Figure 1.
+A UML diagram was created to better visualize the precise encapsulation of data on our database. In this diagram it is possible to see organizational entities, their relationships, attributes and their domains, and the multiplicity of relationships for the The Absolute Artion.
 
 ![Fig 1](/Pictures/UMLAbsoluteArtion.png)
 *Figure 1 - UML Class Diagram*
@@ -30,7 +28,7 @@ Notes:
     4. New Comment: All auction's followers
   
 ### 2. Additional Business Rules
-Business rules can be included in the UML diagram as UML notes or in a table in this section.
+
 - BR1: Authenticated User cannot bid on their own auction.
 - BR2: The action of bidding is only done when the user has credit on their account and when the bid is validated, that money is secured so that that bidder can't spend it in other auctions. After a new bid on that specific auction, the money becomes free to spend. 
 - BR3: The transactions between the site and the user are done through bank transfer and are only validated after an Admin has verify it. Those transfers are mainly: from the user's bank account to their own Absolute Artion credit and cashing out the credit they have accumulated.
@@ -41,20 +39,24 @@ Business rules can be included in the UML diagram as UML notes or in a table in 
 - BR8: Bids need to have a value greater than the greatest bid made for that auction or the initial price if it's the first bid.
 
 ## A5: Relational Schema, validation and schema refinement
-The Relational Schema derived from the Conceptual Data Model is contained in this item. Each relation schema, attributes, domains, primary keys, foreign keys, and other integrity rules are all contained in the Relational Schema: UNIQUE, DEFAULT, NOT NULL, CHECK.
+Proceeding the conceptual data model presented previously, this is implementation of the relational schema.
 
 ### 1. Relational Schema
 | Relation Reference | Relation Compact Notation                                                                                                                           |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| R01                |  Authenticated_User(id, email U NN, username U NN, password NN, Name NN, date_of_birth NN Today - date_of_birth >17 years, address, admin_permission NN, credit DF 0.00) |
-| R02                |  Auction(id, initial_price NN, name NN, id_category -> category, deadline NN, greatest_bid NN)                                                      |
-| R03                |  Image(id, image, id_auction -> Auction)                                                                                                |
-| R04                |  Bid(id, id_Auction -> Auction value NN CK value > greatest_bid, id_user -> Authenticated_User)                                         |
-| R05                |  Category(id, type IN category_name NN DF "Other")                                                                                                                                             |
-| R06                |  Comment(id, text NN, date DF Today, id_user -> Authenticated_User, id_Auction -> Auction)                                                                                                           |
-| R07                |  Transaction(id, value NN CK value > 0, method NN, type IN transaction_type NN, id_user -> Authenticated_User, id_user -> Admin_Permission NN CK True, id_Auction -> Auction  CK typeTransaction sell ou buy id_Auction NN)                                                                                                                     |
-| R08                |  Notification(id, type IN notification_type NN, text NN, id_user -> Authenticated_User)                                                                                           |
-| R09                |  Review(id, id_reviewed -> Authenticated_User, id_reviewer -> Authenticated_User, text DF "", rating >= 0 && <=5 DF 0)                                                                                        |
+| R01                |  Authenticated_User(<u>id</u>, email U NN, username U NN, password NN, Name NN, date_of_birth NN Today - date_of_birth >17 years, address, admin_permission DF False, credit DF 0.00) |
+| R02                |  Auction(<u>id</u>, initial_price NN, name NN , deadline NN, item_description NN, owner -> Authenticated_user NN)   |
+| R03                |  Item_Image(<u>address</u> NN, id_auction -> Auction) |
+| R04                |  Bid(<u>id</u>, id_Auction -> Auction, value NN CK value > greatest_bid, id_user -> Authenticated_User NN)   |
+| R05                |  Category(<u>id</u>, type IN category_name NN DF "Other") |
+| R06                |  User_Comment(<u>id</u>, text NN, date DF Today, id_user -> Authenticated_User, id_Auction -> Auction)  |
+| R07                |  Money_Transaction(<u>id</u>, value NN CK value > 0, type IN transaction_type NN, id_user -> Authenticated_User, admin_id -> Authenticated_User NN CK admin_permission = True, id_Auction -> Auction NN)   |
+| R08                |  Notification(<u>id</u>, type IN notification_type NN, text NN, id_user -> Authenticated_User, comment_id -> User_Comment, bid_id -> Bid, follower_id -> Authenticated_User, auction_id -> Auction)   |
+| R09                |  Review(<u>id</u>, id_reviewed -> Authenticated_User, id_reviewer -> Authenticated_User, review_text DF "", rating >= 0 && <=5 DF 0)  |
+| R10                |  User_Follow(<u>follower_id</u> -> Authenticated_User NN, <u>followed_id</u> -> Authenticated_User NN)   |
+| R11                |  Auction_Follow(<u>follower_id</u> -> Authenticated_User NN, <u>auction_id</u> -> Auction NN)   |
+| R12                |  Greatest_Bid(<u>bid_id</u> -> Bid NN, <u>auction_id</u> -> Auction NN)  |
+| R13                |  Auction_Category(<u>category_id</u> -> Category NN, <u>auction_id</u> -> Auction NN)  |
 
 
 Legend:
@@ -74,7 +76,6 @@ The specification of the additional domain.
 | category_name	      | ENUM ('Clothing', 'Painting', 'Jewelry', 'Sculpture', 'Furniture', 'Accessories', 'Other') |
 
 ### 3. Schema validation
-To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.
 
 | **TABLE R01**                | Authenticated_User                                                                          |
 |------------------------------|---------------------------------------------------------------------------------------------|
@@ -86,10 +87,10 @@ To validate the Relational Schema obtained from the Conceptual Model, all functi
 
 | **TABLE R02**                | Auction                                                                                     |
 |------------------------------|---------------------------------------------------------------------------------------------|
-| **Keys:**                    | {id}, {email}                                                                               |
+| **Keys:**                    | {id}                                                                |
 | **Functional Dependencies:** |                                                                                             |
-| FD0201                       | {id} -> {email, username, password, Name, date_of_birth, address, admin_permission, credit} |
-| FD0102                       | {email} -> {id, username, password, Name, date_of_birth, address, admin_permission, credit} |
+| FD0201                       | {id} -> {initial_price, auction_name, deadline, item_description, auction_owner} |
+
 | **Normal Form**              | BCNF                                                                                        |
 
 | **TABLE R03**                | Image            |
@@ -144,47 +145,53 @@ To validate the Relational Schema obtained from the Conceptual Model, all functi
  
  
 ## A6: Indexes, triggers, transactions and database population
-Brief presentation of the artefact goals.
+This artefact presents the implementations of additional requirements for our database such as indexes, triggers and transactions.
 
 ### 1. Database Workload
-A study of the predicted system load (database load). Estimate of tuples at each relation.
 
-Relation reference	Relation Name	Order of magnitude	Estimated growth
-R01	Table1	units	dozens
-R02	Table2	units	dozens
-R03	Table3	units	dozens
-R04	Table4	units	dozens
+|Relation reference| Relation Name|	Order of magnitude|	Estimated growth|
+|-----------------|---------------|--------------------|----------------|
+|R01	|Authenticated_User	|1 k	|1 / day|
+|R02	|Auction	|10 k	|10 / day|
+|R03	|Item_Image	|10 k 	|10 / day|
+|R04	|Bid	|100 k	|100 / day|
+|R05	|Category	|7	|0|
+|R06	|User_Comment	|10 k	|10 / day|
+|R07	|Money_Transaction	|100 	|1 / day|
+|R08	|Notification	|10 k	|10 / day|
+|R09	|Review	|100	|1 / day|
+|R10	|User_Follow	|10 k	|10  / day|
+|R11	|Auction_Follow	|100 k	|100 / day|
+|R12	|Greatest_Bid	|10 k	|10 / day|
+|R13	|Auction_Category	|10 k	|10 / day|
+
 ### 2. Proposed Indices
-## 2.1. Performance Indices
+#### 2.1. Performance Indices
 Indices proposed to improve performance of the identified queries.
 
-Index	IDX01
-Relation	Relation where the index is applied
-Attribute	Attribute where the index is applied
-Type	B-tree, Hash, GiST or GIN
-Cardinality	Attribute cardinality: low/medium/high
-Clustering	Clustering of the index
-Justification	Justification for the proposed index
-SQL code	
-Analysis of the impact of the performance indices on specific queries. Include the execution plan before and after the use of indices.
+|Index      | IDX01                        |
+|-----------|------------------------------|
+|Relation   | auction |
+|Attribute  | auction_owner|
+|Type	    | Hash          |
+|Cardinality| Medium|
+|Clustering	| No|
+|Justification|	Table 'auction' is frequently accessed to obtain a user's auctions. It is better to use an hash type because filtering is done by exact match and there is no clustering.  |
+|SQL code|
+    CREATE INDEX get_owner ON auction USING hash (auction_owner);
 
-Query	SELECT01
-Description	One sentence describing the query goal
-SQL code	
-Execution Plan without indices	
-Execution plan	
-Execution Plan with indices	
-Execution plan	
-## 2.2. Full-text Search Indices
-The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.
+|Index      | IDX02                        |
+|-----------|------------------------------|
+|Relation   | bid |
+|Attribute  | auction_id|
+|Type	    | Hash          |
+|Cardinality| Medium|
+|Clustering	| No|
+|Justification|	Table 'bid' is frequently accessed to obtain an auction's bids. It is better to use an hash type because filtering is done by exact match and there is no clustering.  |
+|SQL code|
+    CREATE INDEX auction_bid ON bid USING hash (auction_id);
 
-Index	IDX01
-Relation	Relation where the index is applied
-Attribute	Attribute where the index is applied
-Type	B-tree, Hash, GiST or GIN
-Clustering	Clustering of the index
-Justification	Justification for the proposed index
-SQL code	
+	
 ### 3. Triggers
 
 |Trigger |	TRIGGER01 |
@@ -225,7 +232,7 @@ SQL code
               FROM greatest_bid
               WHERE NEW.auction_id = auction_id)) THEN
     UPDATE greatest_bid
-    SET bid_id = NEW.bid_id
+    SET bid_id = NEW.id
     WHERE auction_id = NEW.auction_id;
 	ELSE
     INSERT INTO greatest_bid(bid_id, auction_id) VALUES
@@ -336,17 +343,63 @@ SQL code
     EXECUTE PROCEDURE follow_after_action();
     
 <br>
+|Trigger |	TRIGGER07 |
+|--------|------------|
+|Description| Notifications are automatically created after an event (comment, follow, approaching deadline, end of an auction) and should notify different users. They will be created similarly, but in this example the users that will be notified of a new comment on an auction are the ones that follow it. |
+|SQL code	| 
+
+    DROP FUNCTION IF EXISTS notify_new_comment();
+    CREATE FUNCTION notify_new_comment() RETURNS TRIGGER AS
+    $BODY$
+    DECLARE
+        f auction_follow%rowtype;
+    BEGIN
+
+    FOR f IN (SELECT follower_id
+             FROM auction_follow
+             WHERE auction_id = NEW.auction_id)
+    LOOP INSERT INTO user_notification(user_id, type, comment_id) VALUES
+        (f.follower_id, 'New Comment', NEW.id);
+		END LOOP;
+
+    RETURN NEW;
+
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER notify_new_comment
+        AFTER INSERT OR UPDATE ON user_comment
+        FOR EACH ROW
+        EXECUTE PROCEDURE notify_new_comment();
+    
+<br>
 
 
 ### 4. Transactions
-Transactions needed to assure the integrity of the data.
 
-SQL Reference	Transaction Name
-Justification	Justification for the transaction.
-Isolation level	Isolation level of the transaction.
-Complete SQL Code	
-Annex A. SQL Code
-The database scripts are included in this annex to the EBD component.
+|Transaction| TRAN01|
+|-----------|-------|
+|Description| Insert a new auction |
+|Justification| A new auction needs to be associated with a category (of the type 'Other' by default) because every auction needs to be associated with at least one category. The isolation level is Repeatable Read because we want to be able to insert a new auction and category without worrying that 'auction_id_seq' is changed.   |
+|Isolation Level| REPEATABLE READ  |
+|SQL Code|
+    BEGIN TRANSACTION;
+
+    SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+
+    -- Insert auction
+    INSERT INTO auction (auction_name, initial_price, deadline, item_description, auction_owner)
+    VALUES ($auction_name, $initial_price, $deadline, $item_description, $auction_owner;
+
+    -- Insert category
+    INSERT INTO category (auction_id)
+    VALUES (currval('auction_id_seq'));
+
+    END TRANSACTION;
+
+#### Annex A. SQL Code
+-- link
 
 The database creation script and the population script should be presented as separate elements. The creation script includes the code necessary to build (and rebuild) the database. The population script includes an amount of tuples suitable for testing and with plausible values for the fields of the database.
 
@@ -357,9 +410,9 @@ This code should also be included in the group's git repository and links added 
 ### A.2. Database population
 
 
-**GROUP2184**, 08/11/2021
+**GROUP2184**, 29/11/2021
 
 Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt<br>
-Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt<br>
+Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt (Editor)<br>
 Group member 3: João Gabriel Ferreira Alves, up201810087@fc.up.pt<br>
-Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt (Editor)
+Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt 

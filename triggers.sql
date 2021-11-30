@@ -136,18 +136,19 @@ CREATE TRIGGER verify_admin
 
 ----------------------------------
 
-
--- PERCEBER SE ISTO DEVERIA SER UMA TRANSACTION
 DROP FUNCTION IF EXISTS notify_new_comment();
 CREATE FUNCTION notify_new_comment() RETURNS TRIGGER AS
 $BODY$
+DECLARE
+    f auction_follow%rowtype;
 BEGIN
 
-    FOR F IN (SELECT follower_id
+    FOR f IN (SELECT follower_id
              FROM auction_follow
              WHERE auction_id = NEW.auction_id)
     LOOP INSERT INTO user_notification(user_id, type, comment_id) VALUES
         (f.follower_id, 'New Comment', NEW.id);
+		END LOOP;
 
     RETURN NEW;
 
@@ -161,3 +162,4 @@ CREATE TRIGGER notify_new_comment
         EXECUTE PROCEDURE notify_new_comment();
 
 ----------------------------------
+
