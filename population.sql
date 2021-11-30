@@ -15,17 +15,21 @@ INSERT INTO user_follow (follower_id, followed_id) VALUES
     (1, 2),
     (2, 1),
     (4, 2),
-    (1, 4);
+    (1, 5);
 
 INSERT INTO auction (id, auction_name, initial_price, deadline, item_description, auction_owner) VALUES
-    (1,'Handpainted Jeans',45.00,'2021-12-19 10:23:54+02','I made this handpainted jeans a while back', 2);
+    (1,'Handpainted Jeans',45.00,'2021-12-19 10:23:54+02','I made these handpainted jeans a while back', 2),
+    (2,'Painting',75.00,'2021-12-25 10:23:54+02','Acrylic painting', 4);
 
 INSERT INTO auction_follow (follower_id, auction_id) VALUES
-    (1, 1);
+    (1, 1),
+    (5, 1),
+    (3, 2);
 	
 INSERT INTO category (id, type, auction_id) VALUES
 	(1, 'Clothing', 1),
-	(2, 'Painting');
+	(2, 'Painting', 1),
+    (3, 'Painting', 2);
 
 INSERT INTO bid (bid_value, auction_id, user_id) VALUES
     (50.00, 1, 1),
@@ -49,6 +53,9 @@ INSERT INTO user_notification (id, user_id, type, comment_id) VALUES
 	
 INSERT INTO item_image (address, auction_id) VALUES
     ('xxx', 1);
+
+INSERT INTO review (id_reviewer, id_reviewed, rating) VALUES
+    (3, 1);
 
 
 --SELECT * FROM authenticated_user; 

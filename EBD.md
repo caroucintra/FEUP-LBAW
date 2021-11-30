@@ -49,14 +49,13 @@ Proceeding the conceptual data model presented previously, this is implementatio
 | R03                |  Item_Image(<u>address</u> NN, id_auction -> Auction) |
 | R04                |  Bid(<u>id</u>, id_Auction -> Auction, value NN CK value > greatest_bid, id_user -> Authenticated_User NN)   |
 | R05                |  Category(<u>id</u>, type IN category_name NN DF "Other") |
-| R06                |  User_Comment(<u>id</u>, text NN, date DF Today, id_user -> Authenticated_User, id_Auction -> Auction)  |
+| R06                |  User_Comment(<u>id</u>, text NN, date DF Today, id_user -> Authenticated_User, id_Auction -> Auction NN)  |
 | R07                |  Money_Transaction(<u>id</u>, value NN CK value > 0, type IN transaction_type NN, id_user -> Authenticated_User, admin_id -> Authenticated_User NN CK admin_permission = True, id_Auction -> Auction NN)   |
 | R08                |  Notification(<u>id</u>, type IN notification_type NN, text NN, id_user -> Authenticated_User, comment_id -> User_Comment, bid_id -> Bid, follower_id -> Authenticated_User, auction_id -> Auction)   |
 | R09                |  Review(<u>id</u>, id_reviewed -> Authenticated_User, id_reviewer -> Authenticated_User, review_text DF "", rating >= 0 && <=5 DF 0)  |
 | R10                |  User_Follow(<u>follower_id</u> -> Authenticated_User NN, <u>followed_id</u> -> Authenticated_User NN)   |
 | R11                |  Auction_Follow(<u>follower_id</u> -> Authenticated_User NN, <u>auction_id</u> -> Auction NN)   |
 | R12                |  Greatest_Bid(<u>bid_id</u> -> Bid NN, <u>auction_id</u> -> Auction NN)  |
-| R13                |  Auction_Category(<u>category_id</u> -> Category NN, <u>auction_id</u> -> Auction NN)  |
 
 
 Legend:
@@ -155,7 +154,7 @@ This artefact presents the implementations of additional requirements for our da
 |R02	|Auction	|10 k	|10 / day|
 |R03	|Item_Image	|10 k 	|10 / day|
 |R04	|Bid	|100 k	|100 / day|
-|R05	|Category	|7	|0|
+|R05	|Category	|10 k	|10 / day|
 |R06	|User_Comment	|10 k	|10 / day|
 |R07	|Money_Transaction	|100 	|1 / day|
 |R08	|Notification	|10 k	|10 / day|
@@ -163,7 +162,6 @@ This artefact presents the implementations of additional requirements for our da
 |R10	|User_Follow	|10 k	|10  / day|
 |R11	|Auction_Follow	|100 k	|100 / day|
 |R12	|Greatest_Bid	|10 k	|10 / day|
-|R13	|Auction_Category	|10 k	|10 / day|
 
 ### 2. Proposed Indices
 #### 2.1. Performance Indices
