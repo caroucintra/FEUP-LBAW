@@ -53,7 +53,7 @@ Item 1
 ..
 GROUP2184, 1/12/2021
 
-Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt
-Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt
-Group member 3: João Gabriel Ferreira Alves, up201810087@fc.up.pt
+Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt <br>
+Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt <br>
+Group member 3: João Gabriel Ferreira Alves, up201810087@fc.up.pt <br>
 Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt (Editor)
