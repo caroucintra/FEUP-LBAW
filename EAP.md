@@ -6,7 +6,7 @@ Brief presentation of the artefact's goals.
 
 ### 1. Overview
 Identify and overview the modules that will be part of the application.
-|Overview of the web application|
+|||
 |--------------|----------------|
 |M01: Authentication and Individual Profile|Web resources associated with user authentication and individual profile management. Includes the following system features: login/logout, registration, credential recovery, view and edit personal profile information, rate other auctioneers, comment on auctions.|
 |M02: Transactions|Web resources associated with the transactions that can be made, such as from the credit card to the website or from the website credit to the auctioneer|
