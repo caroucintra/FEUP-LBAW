@@ -6,12 +6,14 @@ Brief presentation of the artefact's goals.
 
 ### 1. Overview
 Identify and overview the modules that will be part of the application.
-|||
+|Module|Description|
 |--------------|----------------|
 |M01: Authentication and Individual Profile|Web resources associated with user authentication and individual profile management. Includes the following system features: login/logout, registration, credential recovery, view and edit personal profile information, rate other auctioneers, comment on auctions.|
-|M02: Transactions|Web resources associated with the transactions that can be made, such as from the credit card to the website or from the website credit to the auctioneer|
-|M03: Auctions||Web resources associated with items being auctioned|
-|M04: Notifications|Web resources associated with notifications that the users can receive. Includes the following notifications: a new auction being created (when following the auctioneer), ...|  
+|M02: Transactions|Web resources associated with the transactions that can be made, such as from the credit card to the website or from the website credit to the auctioneer. |
+|M03: Auctions|Web resources associated with items being auctioned. It is possible to search for auctions, participate by bidding or commenting, following auctions to keep updated. |
+|M04: Notifications|Web resources associated with notifications that the users can receive. Includes the following notifications: a new auction being created (when following the auctioneer), a new follower, actions regarding auctions (approaching or extended deadline), a new bid or comment on an auction followed by the user. |  
+|M05: Bids|Web resources associated with bids already made. Including search for a specific bid, consult last bids and their values, see which bids have won auctions. |  
+|M06: User Administration and Static Pages |Web resources associated with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.. |  
 
 ### 2. Permissions
 Define the permissions used by each module, necessary to access its data and features.
