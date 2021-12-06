@@ -16,7 +16,12 @@ Identify and overview the modules that will be part of the application.
 |M06: User Administration and Static Pages |Web resources associated with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.. |  
 
 ### 2. Permissions
-Define the permissions used by each module, necessary to access its data and features.
+Each module's permissions are defined in this point to determine resource access conditions.
+
+|-----|---------------|--------------------------|
+| PUB | Pubic         | Users without privileges |
+| USR | User          | Authenticated User       |
+| ADM | Administrator | System administrators    |
 
 ### 3. OpenAPI Specification
 OpenAPI specification in YAML format to describe the web application's web resources.
