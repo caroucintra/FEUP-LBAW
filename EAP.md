@@ -17,11 +17,11 @@ Identify and overview the modules that will be part of the application.
 
 ### 2. Permissions
 Each module's permissions are defined in this point to determine resource access conditions.
-|     |               |                          |
-|-----|---------------|--------------------------|
-| PUB | Pubic         | Users without privileges |
-| USR | User          | Authenticated User       |
-| ADM | Administrator | System administrators    |
+
+|            PUB           |         USR        |          ADM          |
+|:------------------------:|:------------------:|:---------------------:|
+|           Pubic          |        User        |     Administrator     |
+| Users without privileges | Authenticated User | System administrators |
 
 ### 3. OpenAPI Specification
 OpenAPI specification in YAML format to describe the web application's web resources.
