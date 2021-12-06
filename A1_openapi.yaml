@@ -141,4 +141,98 @@ paths:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
 
-  
+  /users/{id}:
+   get:
+     operationId: R106
+     summary: 'R106: View user profile'
+     description: 'Show the individual user profile. Access: USR'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show User Profile UI'
+ 
+
+ /api/works:
+   get:
+     operationId: R202
+     summary: 'R202: Search Auctions API'
+     description: 'Searches for Auctions and returns the results as JSON. Access: PUB.'
+
+     tags:
+       - 'M03: Auctions'
+
+     parameters:
+       - in: query
+         name: query
+         description: String to use for full-text search
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: Auction
+         description: Category of the Auction
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: User name 
+         description: Auctioneer of the auction
+         schema:
+           type: string
+         required: false
+     
+     responses:
+       '200':
+         description: Success
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                   title:
+                     type: string
+                   description:
+                     type: string
+                   images:
+                     type: string
+                     format: binary
+                   auctioneer:
+                     type: string
+                   deadline:
+                     type: time
+                   initial price:
+                     type: float
+                   greatest bid:
+                     type: float
+                   
+                   
+               example:
+                 - id: 5
+                   title: Pintura Surrealista
+                   description: A minha perspetiva de uma estante prestes a cair pintado em óleo na tela. 80*30
+                   images: ???
+                   auctioneer: Hokusai Nagi
+                   deadline: 36:20:49  
+                   initial price: 30€
+                   greatest bid: 47,56 €
+                 - id: 47
+                   title: Vaso em cerâmica
+                   description: Vaso em forma de uma esfera branca com riscas pretas e azuis.
+                   images: ???
+                   auctioneer: Daniela Soares 
+                   deadline: 00:36:14  
+                   initial price: 2 €
+                   greatest bid: 44 €
