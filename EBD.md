@@ -341,9 +341,10 @@ Indices proposed to improve performance of the identified queries.
     EXECUTE PROCEDURE follow_after_action();
     
 <br>
+
 |Trigger |	TRIGGER07 |
 |--------|------------|
-|Description| Notifications are automatically created after an event (comment, follow, approaching deadline, end of an auction) and should notify different users. They will be created similarly, but in this example the users that will be notified of a new comment on an auction are the ones that follow it. |
+|Description| Notifications are automatically created after an event (comment, follow, approaching deadline, end of an auction) and should notify different users. They will be created similarly, but in this example the users that will be notified of a new comment on an auction are the ones that follow it.|
 |SQL code	| 
 
     DROP FUNCTION IF EXISTS notify_new_comment();

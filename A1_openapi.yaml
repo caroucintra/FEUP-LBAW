@@ -1,0 +1,238 @@
+openapi: 3.0.0
+
+info:
+  version: '1.0'
+  title: 'LBAW The Absolute Artsion Web API'
+  description: 'Web Resources Specification (A7) for The Absolute Artsion'
+
+servers:
+- url: http://lbaw.fe.up.pt
+  description: Production server
+
+externalDocs:
+  description: Find more info here.
+  url:  https://git.fe.up.pt/lbaw/lbaw2122/lbaw2184
+ 
+
+tags:
+  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M02: Transactions'
+  - name: 'M03: Auctions'
+  - name: 'M04: Notifications'
+  - name: 'M05: Bids<'
+  - name: 'M06: User Administration and Static pages'
+
+paths:
+  /login:
+   get:
+     operationId: R101
+     summary: 'R101: Login Form'
+     description: 'Provide login form. Access: PUB'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+     responses:
+       '200':
+         description: 'Ok. Show Log-in UI'
+   post:
+     operationId: R102
+     summary: 'R102: Login Action'
+     description: 'Processes the login form submission. Access: PUB'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+
+     requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               email:          # <!--- form field name
+                 type: string
+               password:    # <!--- form field name
+                 type: string
+             required:
+                  - email
+                  - password
+
+     responses:
+       '302':
+         description: 'Redirect after processing the login credentials.'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successful authentication. Redirect to user profile.'
+                 value: '/users/{id}'
+               302Error:
+                 description: 'Failed authentication. Redirect to login form.'
+                 value: '/login'
+
+ /logout:
+
+   post:
+     operationId: R103
+     summary: 'R103: Logout Action'
+     description: 'Logout the current authenticated user. Access: USR, ADM'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+     responses:
+       '302':
+         description: 'Redirect after processing logout.'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successful logout. Redirect to login form.'
+                 value: '/login'
+
+ /register:
+   get:
+     operationId: R104
+     summary: 'R104: Register Form'
+     description: 'Provide new user registration form. Access: PUB'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+     responses:
+       '200':
+         description: 'Ok. Show Sign-Up UI'
+
+   post:
+     operationId: R105
+     summary: 'R105: Register Action'
+     description: 'Processes the new user registration form submission. Access: PUB'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+
+     requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+               email:
+                 type: string
+               picture:
+                 type: string
+                 format: binary
+             required:
+               - email
+               - password
+
+     responses:
+       '302':
+         description: 'Redirect after processing the new user information.'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successful authentication. Redirect to user profile.'
+                 value: '/users/{id}'
+               302Failure:
+                 description: 'Failed authentication. Redirect to login form.'
+                 value: '/login'
+
+  /users/{id}:
+   get:
+     operationId: R106
+     summary: 'R106: View user profile'
+     description: 'Show the individual user profile. Access: USR'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show User Profile UI'
+ 
+
+ /api/works:
+   get:
+     operationId: R202
+     summary: 'R202: Search Auctions API'
+     description: 'Searches for Auctions and returns the results as JSON. Access: PUB.'
+
+     tags:
+       - 'M03: Auctions'
+
+     parameters:
+       - in: query
+         name: query
+         description: String to use for full-text search
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: Auction
+         description: Category of the Auction
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: User name 
+         description: Auctioneer of the auction
+         schema:
+           type: string
+         required: false
+     
+     responses:
+       '200':
+         description: Success
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                   title:
+                     type: string
+                   description:
+                     type: string
+                   images:
+                     type: string
+                     format: binary
+                   auctioneer:
+                     type: string
+                   deadline:
+                     type: time
+                   initial price:
+                     type: float
+                   greatest bid:
+                     type: float
+                   
+                   
+               example:
+                 - id: 5
+                   title: Pintura Surrealista
+                   description: A minha perspetiva de uma estante prestes a cair pintado em óleo na tela. 80*30
+                   images: ???
+                   auctioneer: Hokusai Nagi
+                   deadline: 36:20:49  
+                   initial price: 30€
+                   greatest bid: 47,56 €
+                 - id: 47
+                   title: Vaso em cerâmica
+                   description: Vaso em forma de uma esfera branca com riscas pretas e azuis.
+                   images: ???
+                   auctioneer: Daniela Soares 
+                   deadline: 00:36:14  
+                   initial price: 2 €
+                   greatest bid: 44 €
