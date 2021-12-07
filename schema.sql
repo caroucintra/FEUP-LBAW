@@ -151,3 +151,21 @@ CREATE TABLE review (
 
     CONSTRAINT valid_rating check ((rating > -1) AND (rating < 6))
 );
+
+BEGIN TRANSACTION;
+
+    SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+
+    -- Insert auction
+    INSERT INTO auction (auction_name, initial_price, deadline, item_description, auction_owner)
+    VALUES ($auction_name, $initial_price, $deadline, $item_description, $auction_owner;
+
+    -- Insert category
+    INSERT INTO category (auction_id)
+    VALUES (currval('auction_id_seq'));
+
+END TRANSACTION;
+
+CREATE INDEX get_owner ON auction USING hash (auction_owner);
+
+CREATE INDEX auction_bid ON bid USING hash (auction_id);
