@@ -2,8 +2,8 @@ openapi: 3.0.0
 
 info:
   version: '1.0'
-  title: 'LBAW The Absolute Artsion Web API'
-  description: 'Web Resources Specification (A7) for The Absolute Artsion'
+  title: 'LBAW The Absolute Artion Web API'
+  description: 'Web Resources Specification (A7) for The Absolute Artion'
 
 servers:
 - url: http://lbaw.fe.up.pt
@@ -14,13 +14,17 @@ externalDocs:
   url:  https://git.fe.up.pt/lbaw/lbaw2122/lbaw2184
  
 
-tags:
-  - name: 'M01: Authentication and Individual Profile'
-  - name: 'M02: Transactions'
+  tags:
+  - name: 'M01: Authentication'
+    description: 'Web resources associated with user authentication. Includes the following system features: login/logout, registration, password recovery.'
+  - name: 'M02: Individual Profile'
+    description: 'Web resources associated with individual profile management. Includes the following system features: view and edit personal profile information, list bids, rate auctioneers, list notifications, create and list transactions.'
   - name: 'M03: Auctions'
-  - name: 'M04: Notifications'
-  - name: 'M05: Bids<'
-  - name: 'M06: User Administration and Static pages'
+    description: 'Web resources associated with auctions posted. It is possible to see the auction catalog, search for and create new auctions, see auction pages, participate by bidding or commenting, follow auctions to keep updated.'
+  - name: 'M04: Static pages'
+    description: 'Web resources with static content are associated with this module: about, contact, services and faq.'
+  - name: 'M05: User Administration'
+    description: 'Web resources associates with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user.'
 
 paths:
   /login:
@@ -29,16 +33,16 @@ paths:
      summary: 'R101: Login Form'
      description: 'Provide login form. Access: PUB'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M01: Authentication'
      responses:
        '200':
-         description: 'Ok. Show Log-in UI'
+         description: 'Ok. Show Log-in UI15'
    post:
      operationId: R102
      summary: 'R102: Login Action'
      description: 'Processes the login form submission. Access: PUB'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M01: Authentication'
 
      requestBody:
        required: true
@@ -63,9 +67,12 @@ paths:
              schema:
                type: string
              examples:
-               302Success:
+               302User:
                  description: 'Successful authentication. Redirect to user profile.'
                  value: '/users/{id}'
+                302Admin:
+                 description: 'Successful authentication. Redirect to admin page.'
+                 value: '/admin/{id}'
                302Error:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
@@ -77,7 +84,7 @@ paths:
      summary: 'R103: Logout Action'
      description: 'Logout the current authenticated user. Access: USR, ADM'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M01: Authentication'
      responses:
        '302':
          description: 'Redirect after processing logout.'
@@ -87,8 +94,8 @@ paths:
                type: string
              examples:
                302Success:
-                 description: 'Successful logout. Redirect to login form.'
-                 value: '/login'
+                 description: 'Successful logout. Redirect to home.'
+                 value: '/home'
 
  /register:
    get:
@@ -96,17 +103,17 @@ paths:
      summary: 'R104: Register Form'
      description: 'Provide new user registration form. Access: PUB'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M01: Authentication'
      responses:
        '200':
-         description: 'Ok. Show Sign-Up UI'
+         description: 'Ok. Show Sign-Up UI16'
 
    post:
      operationId: R105
      summary: 'R105: Register Action'
      description: 'Processes the new user registration form submission. Access: PUB'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M01: Authentication'
 
      requestBody:
        required: true
@@ -143,11 +150,11 @@ paths:
 
   /users/{id}:
    get:
-     operationId: R106
-     summary: 'R106: View user profile'
-     description: 'Show the individual user profile. Access: USR'
+     operationId: R201
+     summary: 'R201: View user public profile'
+     description: 'Show the user image, name, description, average rating, email and selling items. Access: PUB'
      tags:
-       - 'M01: Authentication and Individual Profile'
+       - 'M02: Individual Profile'
 
      parameters:
        - in: path
@@ -158,13 +165,28 @@ paths:
 
      responses:
        '200':
-         description: 'Ok. Show User Profile UI'
+         description: 'Ok. Show User Profile UI10'
+
+
+  /users/{id}/profile: #Mostra o perfil para editar
+    get:
+      operationId: R202
+      summary: 'R202: View user profile'
+      description: 'Show the individual user profile and allow editing. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Profile UI10'
  
 
  /api/works:
    get:
-     operationId: R202
-     summary: 'R202: Search Auctions API'
+     operationId: R302
+     summary: 'R302: Search Auctions API'
      description: 'Searches for Auctions and returns the results as JSON. Access: PUB.'
 
      tags:
@@ -179,7 +201,7 @@ paths:
          required: false
        - in: query
          name: Auction
-         description: Category of the Auction
+         description: Category of the auction
          schema:
            type: string
          required: false
