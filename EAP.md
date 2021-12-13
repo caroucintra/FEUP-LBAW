@@ -9,10 +9,10 @@ This segment identifies the modules that will constitute our application.
 |Module|Description|
 |--------------|----------------|
 |M01: Authentication|Web resources associated with user authentication. Includes the following system features: login/logout, registration, password recovery.|
-|M02: Individual Profile|Web resources associated with individual profile management. Includes the following system features: view and edit personal profile information, list bids, rate auctioneers, list notifications, create and list transactions.|
-|M03: Auctions|Web resources associated with auctions posted. It is possible to see the auction catalog, search for and create new auctions, see auction pages, participate by bidding or commenting, follow auctions to keep updated.|
+|M02: Individual Profile|Web resources associated with individual profile management. Includes the following system features: view and edit personal profile information, list bids, see ratings, list notifications, create and list transactions.|
+|M03: Auctions|Web resources associated with auctions posted. It is possible to see the auction catalog, search for and create new auctions, see auction pages, participate by bidding or commenting, follow auctions to keep updated and rate auctioneers.|
 |M04: Static pages|Web resources with static content are associated with this module: about, contact, services and faq.|  
-|M05: User Administration|Web resources associates with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user.| 
+|M05: User Administration|Web resources associated with user management, specifically: view and search users, delete or block user accounts, view and change user information, allow or block transactions and view system access details for each user.| 
 
 ### 2. Permissions
 Permissions are documented here and will later be used on each action regarding modules of the website.

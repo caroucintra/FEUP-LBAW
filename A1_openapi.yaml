@@ -24,7 +24,7 @@ externalDocs:
   - name: 'M04: Static pages'
     description: 'Web resources with static content are associated with this module: about, contact, services and faq.'
   - name: 'M05: User Administration'
-    description: 'Web resources associates with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user.'
+    description: 'Web resources associated with user management, specifically: view and search users, delete or block user accounts, view and change user information, and view system access details for each user.'
 
 paths:
   /login:
@@ -181,9 +181,129 @@ paths:
       responses:
         '200':
           description: 'Ok. Show User Profile UI10'
+
+  /users/{id}/profile/bids:
+    get:
+      operationId: R203
+      summary: 'R203: View user bids'
+      description: 'Show the individual user bid history. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Bid History UI1X'
+
+  /users/{id}/profile/ratings:
+    get:
+      operationId: R204
+      summary: 'R204: View user ratings'
+      description: 'Show the ratings done by previous buyers of that user. Access: PUB'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Ratings UI1X'
+
+
+  /users/{id}/notifications:
+    get:
+      operationId: R205
+      summary: 'R205: View user notifications'
+      description: 'Show the notifications created for that user. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Notifications UI1X'
+
+
+  /users/{id}/newtransaction:
+    get:
+      operationId: R206
+      summary: 'R206: Create a new transaction'
+      description: 'Allows user to make a new movement on their account; transfering the money from the site to a real bank account or the other way around. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+
+      requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               in/out:
+                 type: string
+               value:
+                 type: float
+             required:
+                  - password
+      responses:
+       '302':
+         description: 'Redirect after transaction confirmation.'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successful transaction. Redirect to profile.'
+                 value: '/users/{id}/profile'
+               302Failure:
+                 description: 'Failed transaction. Redirect to profile.'
+                 value: '/users/{id}/profile'
+
+
+  /users/{id}/transactions:
+    get:
+      operationId: R207
+      summary: 'R207: View user transactions'
+      description: 'Show the transactions done by that user. Includes all credit movement. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Transactions UI1X'
  
 
- /api/works:
+  /api/catalog:
+    get:
+      operationId: R301
+      summary: 'R301: View Auctions Catalog'
+      description: 'Show the Auctions Catalog ordered by last bid made and allow filtering the displayed auctions. Access: PUB'
+      tags:
+        - 'M03: Auctions'
+      parameters:
+       - in: query
+         name: Category
+         description: Category wanted by the visitor of the catalog
+         schema:
+           type: string
+         required: false
+         - in: query
+         name: color
+         description: color wanted by the visitor of the catalog
+         schema:
+           type: string
+         required: false
+    
+      responses:
+        '200':
+          description: 'Ok. Show Auction Catalog UI12'
+
+  /api/search:
    get:
      operationId: R302
      summary: 'R302: Search Auctions API'
@@ -214,7 +334,7 @@ paths:
      
      responses:
        '200':
-         description: Success
+         description: 'Ok. Show Auction Search UI13'
          content:
            application/json:
              schema:
