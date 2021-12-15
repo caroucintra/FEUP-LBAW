@@ -174,11 +174,11 @@ The Absolute Artion will be organized the same way a simple online shop would be
 *Figure 1: The Absolute Artion Sitemap*
 
 ### 2. Wireframes
-We plan on implementing the pages for the Auction Details (UI14) and User Profile (UI10) as it is shown below.
+We plan on implementing the pages for the Main Page (UI01), Auction Details (UI14) and User Profile (UI10) as it is shown below.
 
 #### UI14: Auction Details
 
-![](/Pictures/auctiondetails.png)
+![](/Pictures/auction.png)
 *Figure 2: Auction Details Page*
 
 #### UI10: User Profile
@@ -186,15 +186,31 @@ We plan on implementing the pages for the Auction Details (UI14) and User Profil
 ![](/Pictures/userprofile.png)
 *Figure 3: User Profile Page*
 
+#### UI01: Main Page
+
+![](/Pictures/feed.png)
+*Figure 4: Main Page*
+
+#### UI14: All Comments
+
+![](/Pictures/allcomments.png)
+*Figure 5: Comments on Auction Pop-up Page*
+
+#### UI14: All Bids
+
+![](/Pictures/allbids.png)
+*Figure 6: Bids on Auction Pop-up Page*
+
 ## Revision history
 Changes made to the first submission:
 - User's credit card information is now a credit account specific for the site, that can be cashed in and out.
 - Information regarding Regular/Premium users was deleted, since that feature is not gonna be implemented for now.
 - User is no longer able to delete auctions.
+- New wireframes to illustrate the website.
 
-**GROUP2184**, 08/11/2021
+**GROUP2184**, 15/12/2021
 
 Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt<br>
-Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt<br>
+Group member 2: Carolina Cintra Fernandes Figueira, up201906845@up.pt (Editor)<br>
 Group member 3: João Gabriel Ferreira Alves, up201810087@fc.up.pt<br>
-Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt (Editor)
+Group member 4: Maria Eduarda Fornelos Dantas, up201709467@up.pt
