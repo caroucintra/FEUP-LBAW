@@ -309,6 +309,58 @@ paths:
       responses:
         '200':
           description: 'Ok. Show User Transactions UI1X'
+          
+  /users/{id}/profile/newrating:
+    get:
+      operationId: R209
+      summary: 'R204: View user ratings'
+      description: 'Show the ratings done by previous buyers of that user. Access: PUB'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Ratings UI1X'
+
+  /users/{id}/profile/auctions:
+    get:
+      operationId: R208
+      summary: 'R208: View user auctios'
+      description: 'Show the auctions done by the user. Access: PUB'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Ok. Show AuctionS UI1X'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    images:
+                      type: string
+                      format: binary
+                    auctioneer:
+                      type: string
+                    deadline:
+                      type: time
+                    initial price:
+                      type: float
+                    greatest bid:
+                      type: float
  
 
   /api/catalog:
