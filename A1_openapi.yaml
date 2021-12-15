@@ -47,7 +47,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               properties:
@@ -118,7 +118,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               properties:
@@ -162,7 +162,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               properties:
@@ -269,7 +269,7 @@ paths:
       requestBody:
        required: true
        content:
-         application/json:
+         application/x-www-form-urlencoded:
            schema:
              type: object
              properties:
@@ -368,7 +368,7 @@ paths:
         '200':
           description: 'Ok. Show Auction Search UI13'
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: array
                 items:
@@ -424,7 +424,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               required:
@@ -467,7 +467,7 @@ paths:
         '200':
           description: 'Ok. Show Auction Page UI14'
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                   type: object
                   properties:
@@ -513,7 +513,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               required:
@@ -535,7 +535,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               type: object
               required:
