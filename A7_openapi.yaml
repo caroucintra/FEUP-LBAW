@@ -173,10 +173,10 @@ paths:
 
       responses:
        '200':
-         description: 'Email successfully sent'
+          description: 'Email successfully sent'
        '403':
-         description: 'Email not recognized'
-         value: '/recoverPassword'
+          description: 'Email not recognized'
+          value: '/recoverPassword'
   
   
 
@@ -267,33 +267,33 @@ paths:
         - 'M02: Individual Profile'
 
       requestBody:
-       required: true
-       content:
-         application/x-www-form-urlencoded:
-           schema:
-             type: object
-             properties:
-               in/out:
-                 type: string
-               value:
-                 type: float
-             required:
-                  - in/out
-                  - value
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                in/out:
+                  type: string
+                value:
+                  type: float
+              required:
+                - in/out
+                - value
       responses:
-       '302':
-         description: 'Redirect after transaction confirmation.'
-         headers:
-           Location:
-             schema:
-               type: string
-             examples:
-               302Success:
-                 description: 'Successful transaction. Redirect to profile.'
-                 value: '/users/{id}/profile'
-               302Failure:
-                 description: 'Failed transaction. Redirect to profile.'
-                 value: '/users/{id}/profile'
+        '302':
+          description: 'Redirect after transaction confirmation.'
+          headers:
+            location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful transaction. Redirect to profile.'
+                  value: '/users/{id}/profile'
+                302Failure:
+                  description: 'Failed transaction. Redirect to profile.'
+                  value: '/users/{id}/profile'
 
 
   /users/{id}/transactions:
@@ -311,23 +311,28 @@ paths:
           description: 'Ok. Show User Transactions UI1X'
           
   /users/{id}/profile/newrating:
-    get:
+    post:
       operationId: R209
-      summary: 'R204: View user ratings'
-      description: 'Show the ratings done by previous buyers of that user. Access: PUB'
+      summary: 'R209: User rating'
+      description: 'Allows users to rate one another after winning an auction.'
       tags:
         - 'M02: Individual Profile'
       parameters:
         - $ref: '#/components/parameters/ID'
 
+
       responses:
         '200':
-          description: 'Ok. Show User Ratings UI1X'
+          description: 'Rating successfully done'
+        '403':
+          description: 'Rating failed'
+
+
 
   /users/{id}/profile/auctions:
     get:
       operationId: R208
-      summary: 'R208: View user auctios'
+      summary: 'R208: View user auctions'
       description: 'Show the auctions done by the user. Access: PUB'
       tags:
         - 'M02: Individual Profile'
@@ -336,7 +341,7 @@ paths:
 
       responses:
         '200':
-          description: 'Ok. Show AuctionS UI1X'
+          description: 'Ok. Show Auctions UI1X'
           content:
             application/json:
               schema:
@@ -371,18 +376,18 @@ paths:
       tags:
         - 'M03: Auctions'
       parameters:
-       - in: query
-         name: Category
-         description: Category wanted by the visitor of the catalog
-         schema:
-           type: string
-         required: false
-         - in: query
-         name: color
-         description: color wanted by the visitor of the catalog
-         schema:
-           type: string
-         required: false
+        - in: query
+          name: Category
+          description: Category wanted by the visitor of the catalog
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: color
+          description: color wanted by the visitor of the catalog
+          schema:
+            type: string
+          required: false
     
       responses:
         '200':
@@ -542,8 +547,6 @@ paths:
                     greatest_bid:
                       type: float
 
-
-  /api/auctions/{id}:
     put:
       operationId: R305
       summary: 'R305: Follow Auction'
@@ -598,7 +601,7 @@ paths:
                   type: float
       responses:
       '200':
-        description: 'Bid succssesfully done'
+        description: 'Bid successfully done'
       '403':
         description: 'Bid failed'
 
