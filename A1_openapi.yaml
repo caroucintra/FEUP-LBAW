@@ -278,7 +278,8 @@ paths:
                value:
                  type: float
              required:
-                  - password
+                  - in/out
+                  - value
       responses:
        '302':
          description: 'Redirect after transaction confirmation.'
