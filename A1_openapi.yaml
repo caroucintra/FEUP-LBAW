@@ -147,6 +147,38 @@ paths:
                 302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
+                  
+  /recoverPassword:
+    get:
+      operationId: R106
+      summary: 'R105: Recover Password'
+      description: 'Lets the user replace the password. Access: PUB'
+      tags:
+        - 'M01: Authentication'
+      responses:
+        '200':
+          description: 'Ok. Show Recover Password UI17'     
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+                - email
+
+      responses:
+       '200':
+         description: 'Email successfully sent'
+       '403':
+         description: 'Email not recognized'
+         value: '/recoverPassword'
+  
+  
 
   /users/{id}:
     get:
@@ -384,7 +416,7 @@ paths:
     post:
       operationId: R303
       summary: 'R303: Create Auction'
-      description: 'Allows user to create a new Auction. Access: USR.'
+      description: 'Allows user to create a new Auction. Access: USR.' 
 
       tags:
         - 'M03: Auctions'
@@ -425,7 +457,7 @@ paths:
     get:
       operationId: R304
       summary: 'R304: View Auction'
-      description: 'View all public information regarding an auction. Access: PUB.'
+      description: 'View all public information regarding an auction. Access: PUB.' # Não seria Auctioneer? - joao
       tags:
         - 'M03: Auctions'
       parameters:
@@ -511,6 +543,11 @@ paths:
               properties:
                 value:
                   type: float
+      responses:
+      '200':
+        description: 'Bid succssesfully done'
+      '403':
+        description: 'Bid failed'
 
 
               
