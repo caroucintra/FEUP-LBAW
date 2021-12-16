@@ -604,6 +604,135 @@ paths:
         description: 'Bid successfully done'
       '403':
         description: 'Bid failed'
+        
+   /admin/users:
+    get:
+      operationId: R501
+      summary: 'R501: View all users'
+      description: 'Show a list with all users. Access: ADM'
+      tags:
+        - 'M05: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show UI15'
+  
+  /admin/users/search:
+    get:
+      operationId: R502
+      summary: 'R502: Search for a user'
+      description: 'Show the searched user. Access: ADM'
+      tags:
+        - 'M05: User Administration'
+      parameters:
+        - in: query
+          name: user id
+          description: Searched user Id
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: username
+          description: Searched user name
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: email
+          description: Searched user email
+          schema:
+            type: string
+          required: false
+     
+      responses:
+        '200':
+          description: 'Ok. Show User Search UI16 Access: ADM'
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    username:
+                      type: string
+                    
+                example:
+                  - id: 5
+                    username: meduarda123
+                    email: duda123@gmail.com
+   
+  /admin/users/{id}/delete: 
+    delete:
+      operationId: R503
+      summary: 'R503 - Delete user'
+      description: 'Deletes a user Access: ADM'
+      tags:
+        - 'M05: User Administration'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+        
+      responses:
+        '204':  
+          description: 'Successfully deleted the user'
+        '404':
+          description: 'User not found'
+                    
+  /admin/users/{id}/block: 
+    put:
+      operationId: R504
+      summary: 'R504 - Block user'
+      description: 'Blocks a user Access: ADM'
+      tags:
+        - 'M05: User Administration'
+      parameters:
+        - $ref: '#/components/parameters/ID'
 
+      responses:
+        '204':  
+          description: 'Successfully blocked the user'
+        '404':
+          description: 'User not found' 
+          
+  /admin/users/{id}/profile: 
+   get:
+      operationId: R505
+      summary: 'R505 - Get user profile information'
+      description: 'Returns all profile information about the user Access: ADM'
+      tags:
+        - 'M05: User Administration'
+      parameters:
+        - $ref: '#/components/parameters/ID'
 
-              
+      responses:
+        '200':
+          description: 'Successfully returned the user information'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+
+  /admin/users/{id}/change_profile: 
+    put:
+      operationId: R506
+      summary: 'R506 - Change user profile information'
+      description: 'Updates the user profile information Access: ADM'
+      tags:
+        - 'M05: User Administration'
+
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInfo'
+
+      responses:
+        '204':
+          description: Successfully updated user profile 
+        '404':
+          $ref: '#/components/responses/UserNotFound'              
