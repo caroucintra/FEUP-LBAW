@@ -618,7 +618,62 @@ paths:
         description: 'Bid successfully done'
       '403':
         description: 'Bid failed'
-        
+
+   /homepage:
+    get:
+      operationId: R401
+      summary: 'R401: Homepage'
+      description: 'Provide Homepage. Access: PUB'
+      tags:
+        - 'M04: Static pages'
+      responses:
+        '200':
+          description: 'Ok. Show UI01'
+
+  /about_us:
+    get:
+      operationId: R402
+      summary: 'R402 About us'
+      description: 'Access about us page. Access: PUB'
+      tags:
+        - 'M04: Static pages'
+      responses:
+        '200':
+          description: 'OK, Show UI02'
+          
+  /services:
+    get:
+      operationId: R403
+      summary: 'R403 Services'
+      description: 'Access Services page. Access: PUB'
+      tags:
+        - 'M04: Static pages'
+      responses:
+        '200':
+          description: 'OK, Show UI03'
+
+  /contact:
+    get:
+      operationId: R404
+      summary: 'R404 Contact'
+      description: 'Access contacts page. Access: PUB'
+      tags:
+        - 'M04: Static pages'
+      responses:
+        '200':
+          description: 'OK, Show UI04'
+
+  /faq:
+    get:
+      operationId: R405
+      summary: 'R405 FAQ'
+      description: 'Access FAQ page. Access: PUB'
+      tags:
+        - 'M04: Static pages'
+      responses:
+        '200':
+          description: 'OK, Show UI05'  
+     
    /admin/users:
     get:
       operationId: R501
