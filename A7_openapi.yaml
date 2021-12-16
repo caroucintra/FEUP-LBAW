@@ -310,7 +310,7 @@ paths:
         '200':
           description: 'Ok. Show User Transactions UI1X'
           
-  /users/{id}/profile/newrating:
+/users/{id}/profile/newrating:
     post:
       operationId: R209
       summary: 'R209: User rating'
@@ -320,6 +320,20 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ID'
 
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - comment
+                - stars
+              properties:
+                comment:
+                  type: string
+                stars:
+                  type: float
 
       responses:
         '200':
