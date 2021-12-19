@@ -151,14 +151,19 @@ paths:
   /recoverPassword:
     get:
       operationId: R106
-      summary: 'R105: Recover Password'
+      summary: 'R106: Recover Password Form'
       description: 'Lets the user replace the password. Access: PUB'
       tags:
         - 'M01: Authentication'
       responses:
         '200':
-          description: 'Ok. Show Recover Password UI17'     
+          description: 'Ok. Show Recover Password Form UI17'     
     post:
+      operationId: R107
+      summary: 'R107: Recover Password'
+      description: 'Lets the user replace the password. Access: PUB'
+      tags:
+        - 'M01: Authentication'
       requestBody:
         required: true
         content:
@@ -176,7 +181,6 @@ paths:
           description: 'Email successfully sent'
        '403':
           description: 'Email not recognized'
-          value: '/recoverPassword'
   
   
 
@@ -310,7 +314,7 @@ paths:
         '200':
           description: 'Ok. Show User Transactions UI1X'
           
-/users/{id}/profile/newrating:
+  /users/{id}/profile/newrating:
     post:
       operationId: R209
       summary: 'R209: User rating'
@@ -340,8 +344,6 @@ paths:
           description: 'Rating successfully done'
         '403':
           description: 'Rating failed'
-
-
 
   /users/{id}/profile/auctions:
     get:
@@ -380,7 +382,22 @@ paths:
                       type: float
                     greatest bid:
                       type: float
- 
+
+  /users/{id}/delete:
+    delete:
+      operationId: R210
+      summary: 'R210: Delete user profile'
+      description: 'Allows users to delete their personal profile. Access: USR'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - $ref: '#/components/parameters/ID'
+
+      responses:
+        '200':
+          description: 'Profile deleted successfully'
+        '404':
+          description: 'Failed to delete profile'
 
   /api/catalog:
     get:
@@ -523,6 +540,11 @@ paths:
                 item_image:
                   type: string
                   format: binary
+      responses:
+        '200':
+          description: 'Auction successfully created'
+        '403':
+          description: 'Auction failed'
 
 
   /api/auctions/{id}:
@@ -569,9 +591,14 @@ paths:
         - 'M03: Auctions'
       parameters:
         - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: 'Following auction'
+        '403':
+          description: 'Follow failed'
       
   /api/auctions/{id}/comment:
-    put:
+    post:
       operationId: R306
       summary: 'R306: Comment on Auction'
       description: 'Allows user to comment on an auction. Access: USR.'
@@ -591,9 +618,14 @@ paths:
               properties:
                 text:
                   type: string
+      responses:
+        '200':
+          description: 'Comment successfully done'
+        '403':
+          description: 'Comment failed'
 
   /api/auctions/{id}/bid:
-    put:
+    post:
       operationId: R307
       summary: 'R307: Bid on Auction'
       description: 'Allows user to bid on an auction. Access: USR.'
@@ -614,12 +646,40 @@ paths:
                 value:
                   type: float
       responses:
-      '200':
-        description: 'Bid successfully done'
-      '403':
-        description: 'Bid failed'
+        '200':
+          description: 'Bid successfully done'
+        '403':
+          description: 'Bid failed'
 
-   /homepage:
+  /api/auctions/{id}/edit:
+    get:
+      operationId: R308
+      summary: 'R308: Show Auction for editing'
+      description: 'Allows auctioneers to edit their auction. Access: AUC.'
+      tags:
+        - 'M03: Auctions'
+      
+      responses:
+        '200':
+          description: 'Auction updated successfully'
+        '403':
+          description: 'Update failed'
+
+/api/auctions/{id}/delete:
+  delete:
+      operationId: R309
+      summary: 'R309: Delete Auction'
+      description: 'Allows auctioneers to delete their auction. Access: AUC.'
+      tags:
+        - 'M03: Auctions'
+      
+      responses:
+      '200':
+        description: 'Auction deleted successfully'
+      '403':
+        description: 'Delete failed'
+
+  /homepage:
     get:
       operationId: R401
       summary: 'R401: Homepage'
@@ -674,7 +734,7 @@ paths:
         '200':
           description: 'OK, Show UI05'  
      
-   /admin/users:
+  /admin/users:
     get:
       operationId: R501
       summary: 'R501: View all users'
@@ -765,7 +825,7 @@ paths:
           description: 'User not found' 
           
   /admin/users/{id}/profile: 
-   get:
+    get:
       operationId: R505
       summary: 'R505 - Get user profile information'
       description: 'Returns all profile information about the user Access: ADM'
@@ -804,4 +864,4 @@ paths:
         '204':
           description: Successfully updated user profile 
         '404':
-          $ref: '#/components/responses/UserNotFound'              
+          description: 'User not found'           
