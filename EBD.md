@@ -1,4 +1,5 @@
 # EBD: Database Specification Component
+
 This document corresponds to a specification of the elements in a database that stores all the information of an online auction service. The modularization was conceptualized to make every information independent from the rest of the database components.
 
 ## A4: Conceptual Data Model
