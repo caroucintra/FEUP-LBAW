@@ -959,7 +959,7 @@ For The Absolute Artion system, consider the user stories that are presented in 
 #### 1.2. Implemented Web Resources
 The web resources that were implemented in the prototype where the following:
 
-Module M01: Authentication
+#### Module M01: Authentication
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
@@ -967,7 +967,7 @@ Module M01: Authentication
 |R02: Logout||
 |R03: Registration|/register| 
 
-Module M02: Individual Profile
+#### Module M02: Individual Profile
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
@@ -975,7 +975,7 @@ Module M02: Individual Profile
 |R02: View personal active auctions||
 |R03: View Bidding history|| 
 
-Module M03: Auctions
+#### Module M03: Auctions
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
@@ -984,7 +984,7 @@ Module M03: Auctions
 |R03: See auction pages|| 
 |R04: Participate by bidding|| 
 
-Module M04: Static pages
+#### Module M04: Static pages
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
@@ -993,7 +993,7 @@ Module M04: Static pages
 |R03: See FAQ page|| 
 |R04: See Contact page|| 
 
-Module M05: User Administration
+#### Module M05: User Administration
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
