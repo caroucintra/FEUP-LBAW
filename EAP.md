@@ -1,9 +1,9 @@
 # EAP: Architecture Specification and Prototype
 
-This proposal corresponds to an architecture specification and prototype of an auction-holding website. Since the platform will be created using Laravel, the approach used on the architecture is MVC (separating Models from Views and Controllers).
+This proposal corresponds to an architecture specification and prototype of an auction-holding website. Since the platform will be created using Laravel, the approach used in the architecture is MVC (separating Models from Views and Controllers).
 
 ## A7: Web Resources Specification
-In this artifact, it is described how modules and permissions are conceptualized in this project. It is important to create a separation between the different functionalities regarding each module, that way aiming to a well-defined abstraction of the final product.
+In this artifact, it is described how modules and permissions are conceptualized in this project. It is important to create a separation between the different functionalities regarding each module, that way, aiming to a well-defined abstraction of the final product.
 
 ### 1. Overview
 This segment identifies the modules that will constitute our application.
@@ -27,6 +27,8 @@ Permissions are documented here and will later be used on each action regarding 
 OpenAPI specification in YAML format to describe the web application's web resources.
 
 Link to the a7_openapi.yaml file in the group's repository.
+
+[the link](https://github.com/carolcintra24/FEUP-LBAW/blob/master/A7_openapi.yaml)
 
 ``` sql
 
@@ -908,6 +910,48 @@ This artifact presents the prototype of the website, including the features and 
 #### 1.1. Implemented User Stories
 The user stories that were implemented in the prototype where the following.
 
+#### User
+
+| Identifier | Name             | Priority | Description                                                                                               |
+|------------|------------------|----------|-----------------------------------------------------------------------------------------------------------|
+| US01       | See Home         | High     | As a _User_, I want to go to the Main page to see a overview of the website.                              |
+| US02       | See About        | High     | As a _User_, I want to view the About page so that I can learn more about the website and its developers. |
+| US03       | Consult Services | High     | As a _User_, I want to view the website's services and get information about them.                        |
+| US04       | Consult FAQ      | High     | As a _User_, I want to view the FAQ to find answers to common questions about the website.                |
+| US05       | Consult Contacts | High     | As a _User_, I want have access to the creator's contacts so that I can contact them if needed.           |
+| US06       | Search           | High     | As a _User_, I want be able to search posts or users so that it is easier to find what I'm interested in.               |
+
+#### Visitor
+
+| Identifier | Name              | Priority | Description                                                                                                                                                                                            |
+|------------|-------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| US11       | Sign-in           | High     | As a _Visitor_, I want to log in so that I may see sensitive information.                                                                                                                              |
+| US12       | Sign-up           | High     | As a _Visitor_, I want to create an account in the system so that I may verify myself.                                                                                                                 |
+#### Authenticated User
+
+| Identifier | Name             | Priority | Description                                                                                               |
+|------------|------------------|----------|-----------------------------------------------------------------------------------------------------------|
+| US22       | Log Out              | High     | As an _Authenticated User_, I want to be able to log out from my account so that I have control of when and where I am logged in my account.                        |
+| US24       | View Profile         | High     | As an _Authenticated User_, I want to view my own profile so that I know what is displayed to other people.                        |
+
+#### Auctioneer
+
+| Identifier | Name                  | Priority | Description                                                                                                                              |
+|------------|-----------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------|
+| US41       | Create Auctions       | High     | As an _Auctioneer_, I want to be able to create auctions so that I can use the platform to sell my items.                                |
+| US42       | Edit Auctions         | High     | As an _Auctioneer_, I want to be able to edit live auctions so that I can update information if needed.                                  |
+| US43       | Cancel Auctions       | High     | As an _Auctioneer_, I want to be able cancel my auctions if no one has made a bid on it yet, in case I no longer want to sell that item. |
+
+#### Bidder
+
+| Identifier | Name                   | Priority | Description                                                                                                                |
+|------------|------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|
+| US51       | Bid on Auctions        | High     | As a _Bidder_, I want to bid on auctions so that I can try and buy the items I'm interested in.                            |
+| US52       | See my Bidding History | High     | As a _Bidder_, I want to be able to see my bidding history so that I have always access to the actions I made on the site. |
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 2.2. User Stories
 For The Absolute Artion system, consider the user stories that are presented in the following sections.
 
@@ -929,14 +973,31 @@ For The Absolute Artion system, consider the user stories that are presented in 
 |------------|-------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | US11       | Sign-in           | High     | As a _Visitor_, I want to log in so that I may see sensitive information.                                                                                                                              |
 | US12       | Sign-up           | High     | As a _Visitor_, I want to create an account in the system so that I may verify myself.                                                                                                                 |
+| US13       | OAuth API Sing-in           | Low     | As a _Visitor_, I want to log in through my Facebook account so that may verify myself.                                                                                                         |
+| US14       | OAuth API Sing-in           | High     | As a _Visitor_, I want to create an account in the system so that I may verify myself.                                                                                                                 |
 
 #### Authenticated User
 
 | Identifier | Name             | Priority | Description                                                                                               |
 |------------|------------------|----------|-----------------------------------------------------------------------------------------------------------|
+| US21       | Edit Profile         | High     | As an _Authenticated User_, I want to edit my profile so that I can choose what information to share.                              |
 | US22       | Log Out              | High     | As an _Authenticated User_, I want to be able to log out from my account so that I have control of when and where I am logged in my account.                        |
+| US23       | Delete Account       | High     | As an _Authenticated User_, I want to be able to delete my account so that my profile doesn't publicly exist anymore.           |
 | US24       | View Profile         | High     | As an _Authenticated User_, I want to view my own profile so that I know what is displayed to other people.                        |
+| US25       | Follow Auctions      | Medium   | As an _Authenticated User_, I want to follow auctions so that I am notified when there's new actions regarding them.                        |
+| US26       |  See Notifications       | Medium      | As an _Authenticated User_, I want to be able to see my notifications in order to be updated on aactions on the site. |
+| US27       | Follow Other Profiles| Medium   | As an _Authenticated User_, I want to follow other users so that I can keep myself updated on their actions. |
+| US28       | Comment              | Low      | As an _Authenticated User_, I want to comment on auctions so that I can share my opinion. |
+| US29       | Edit Comment         | Low      | As an _Authenticated User_, I want to edit my comments so that I fix a possible mistake. |
+| US30       | Delete Comment       | Low      | As an _Authenticated User_, I want to delete a comment in case I don't it to be public anymore. |
 
+#### Admnistrator
+
+| Identifier | Name           | Priority | Description                                                                                                                                                                                                        |
+|------------|----------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| US31       | Stop Auctions  | High     | As an _Admin_, I want to be able to stop and cancel auctions so that if anything goes wrong, that auction is cancelled and possibly deleted.                                                                       |
+| US32       | Ban Users      | High     | As an _Admin_, I want to be able to ban users who disrespect the terms of service or the community guidelines, so that they can no longer have access to the content that an authenticated user has access to. |
+| US33       | Delete Content | High     | As an _Admin_, I want to be able to see reported content and delete it, so that I can remove inappropriate content.                                                                                                |
 
 #### Auctioneer
 
@@ -945,6 +1006,7 @@ For The Absolute Artion system, consider the user stories that are presented in 
 | US41       | Create Auctions       | High     | As an _Auctioneer_, I want to be able to create auctions so that I can use the platform to sell my items.                                |
 | US42       | Edit Auctions         | High     | As an _Auctioneer_, I want to be able to edit live auctions so that I can update information if needed.                                  |
 | US43       | Cancel Auctions       | High     | As an _Auctioneer_, I want to be able cancel my auctions if no one has made a bid on it yet, in case I no longer want to sell that item. |
+| US44       | Receive Notifications | Medium     | As an _Auctioneer_, I want to receive notifications so that I am up to date with my live auctions.   
 
 
 #### Bidder
@@ -953,6 +1015,8 @@ For The Absolute Artion system, consider the user stories that are presented in 
 |------------|------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|
 | US51       | Bid on Auctions        | High     | As a _Bidder_, I want to bid on auctions so that I can try and buy the items I'm interested in.                            |
 | US52       | See my Bidding History | High     | As a _Bidder_, I want to be able to see my bidding history so that I have always access to the actions I made on the site. |
+| US53       | Rate the Seller        | Medium   | As a _Bidder_, I want to be able to rate the seller so that I know I have a way of rating my experience with the buy.      |
+| US54       | Receive Notifications  | High     | As a _Bidder_, I want to receive notifications so that I am up to date with the auctions I participated in.                |
 
 
 
@@ -1000,14 +1064,35 @@ The web resources that were implemented in the prototype where the following:
 |R01: View other users profile||
 
 ### 2. Prototype
-URL of the prototype plus user credentials necessary to test all features.
-Link to the prototype source code in the group's git repository.
 
-Revision history
-Changes made to the first submission:
+The url for the prototype is:
+http://lbaw2184.lbaw.fe.up.pt/
 
-Item 1
-..
+Credentials:
+
+admin user:
+
+email: admin@admin.com
+passwrod: 1234
+
+regular user:
+
+Pode cancelar auction porque não tem nenhuma bid.
+Criar um novo auction. 
+Fazer bids em outras auctions.
+
+email: carsonjames@mail.com
+password: 1234
+
+Perfil mais completo com active e unactive auctions.
+
+email: luisarodrigues@mail.com
+password: 1234
+
+
+Code available at:
+https://git.fe.up.pt/lbaw/lbaw2122/lbaw2184
+
 GROUP2184, 21/12/2021
 
 Group member 1: Ana Bárbara Carvalho Barbosa, up201906704@up.pt <br>
