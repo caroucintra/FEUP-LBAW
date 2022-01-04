@@ -68,11 +68,11 @@ paths:
                 type: string
               examples:
                 302User:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful authentication. Redirect to home (auctions catalog).'
+                  value: '/catalog'
                 302Admin:
-                  description: 'Successful authentication. Redirect to admin page.'
-                  value: '/admin/{id}'
+                  description: 'Successful authentication. Redirect to home (auctions catalog).'
+                  value: '/catalog'
                 302Error:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
@@ -94,8 +94,8 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful logout. Redirect to home.'
-                  value: '/home'
+                  description: 'Successful logout. Redirect to login form.'
+                  value: '/login'
 
   /register:
     get:
@@ -142,11 +142,11 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful authentication. Redirect to home (auctions catalog).'
+                  value: '/catalog'
                 302Failure:
-                  description: 'Failed authentication. Redirect to login form.'
-                  value: '/login'
+                  description: 'Failed authentication. Redirect to register form.'
+                  value: '/register'
                   
   /recoverPassword:
     get:
