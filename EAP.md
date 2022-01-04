@@ -28,7 +28,7 @@ OpenAPI specification in YAML format to describe the web application's web resou
 
 Link to the a7_openapi.yaml file in the group's repository.
 
-[the link](https://github.com/carolcintra24/FEUP-LBAW/blob/master/A7_openapi.yaml)
+[a7_openapi.yaml](https://github.com/carolcintra24/FEUP-LBAW/blob/master/A7_openapi.yaml)
 
 ``` sql
 
@@ -936,8 +936,8 @@ The user stories that were implemented in the prototype where the following.
 
 #### Admnistrator
 
-| Identifier | Name           | Priority | Description                                                                                                                                                                                                        |
-|------------|----------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Identifier|Name|Priority|Description|                                                                                                                                       
+|---|---|---|---|
 |||||
 
 
@@ -979,7 +979,7 @@ For The Absolute Artion system, consider the user stories that are presented in 
 | US11       | Sign-in           | High     | As a _Visitor_, I want to log in so that I may see sensitive information.                                                                                                                              |
 | US12       | Sign-up           | High     | As a _Visitor_, I want to create an account in the system so that I may verify myself.                                                                                                                 |
 | US13       | OAuth API Sing-in           | Low     | As a _Visitor_, I want to log in through my Facebook account so that may verify myself.                                                                                                         |
-| US14       | OAuth API Sing-in           | High     | As a _Visitor_, I want to create an account in the system so that I may verify myself.                                                                                                                 |
+| US14       | OAuth API Sing-up           | Low     |As a Visitor, I want to create an account linked to my Facebook account in the system so that my personal information is automatically migrated and so I can link my account to a business page.                                                                                                                 |
 
 #### Authenticated User
 
