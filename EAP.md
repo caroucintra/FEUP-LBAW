@@ -1050,8 +1050,8 @@ The web resources that were implemented in the prototype where the following:
 |--------------|----------------|
 |R01: View auctions catalog|/catalog|
 |R02: Search for and create new auctions|/auctions|
-|R03: See auction pages|auctions/{auction_id}| 
-|R04: Participate by bidding|auctions/{auction_id}| 
+|R03: See auction pages|/auctions/{auction_id}| 
+|R04: Participate by bidding|/auctions/{auction_id}| 
 
 #### Module M04: Static pages
 
