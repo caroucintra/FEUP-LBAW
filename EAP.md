@@ -934,6 +934,13 @@ The user stories that were implemented in the prototype where the following.
 | US22       | Log Out              | High     | As an _Authenticated User_, I want to be able to log out from my account so that I have control of when and where I am logged in my account.                        |
 | US24       | View Profile         | High     | As an _Authenticated User_, I want to view my own profile so that I know what is displayed to other people.                        |
 
+#### Admnistrator
+
+| Identifier | Name           | Priority | Description                                                                                                                                                                                                        |
+|------------|----------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|||||
+
+
 #### Auctioneer
 
 | Identifier | Name                  | Priority | Description                                                                                                                              |
@@ -949,8 +956,6 @@ The user stories that were implemented in the prototype where the following.
 | US51       | Bid on Auctions        | High     | As a _Bidder_, I want to bid on auctions so that I can try and buy the items I'm interested in.                            |
 | US52       | See my Bidding History | High     | As a _Bidder_, I want to be able to see my bidding history so that I have always access to the actions I made on the site. |
 
----------------------------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 2.2. User Stories
 For The Absolute Artion system, consider the user stories that are presented in the following sections.
@@ -1035,33 +1040,33 @@ The web resources that were implemented in the prototype where the following:
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
-|R01: View personal profile||
-|R02: View personal active auctions||
-|R03: View Bidding history|| 
+|R01: View personal profile|/profile/{user_id}|
+|R02: View personal active auctions|/profile/{user_id}|
+|R03: View Bidding history|/bid_history| 
 
 #### Module M03: Auctions
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
-|R01: View auctions catalog||
-|R02: Search for and create new auctions||
-|R03: See auction pages|| 
-|R04: Participate by bidding|| 
+|R01: View auctions catalog|/catalog|
+|R02: Search for and create new auctions|/auctions|
+|R03: See auction pages|auctions/{auction_id}| 
+|R04: Participate by bidding|auctions/{auction_id}| 
 
 #### Module M04: Static pages
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
-|R01: See About page||
-|R02: See Terms of Service page||
-|R03: See FAQ page|| 
-|R04: See Contact page|| 
+|R01: See About page|/about|
+|R02: See Terms of Service page|/services|
+|R03: See FAQ page|/faq| 
+|R04: See Contact page|/contact| 
 
 #### Module M05: User Administration
 
 |Web resource name|URL to access the web resource|
 |--------------|----------------|
-|R01: View other users profile||
+|R01: View other users profile|/profile/{user_id}|
 
 ### 2. Prototype
 
@@ -1070,12 +1075,12 @@ http://lbaw2184.lbaw.fe.up.pt/
 
 Credentials:
 
-admin user:
+Admin user:
 
 email: admin@admin.com
 passwrod: 1234
 
-regular user:
+Regular user:
 
 Pode cancelar auction porque não tem nenhuma bid.
 Criar um novo auction. 
