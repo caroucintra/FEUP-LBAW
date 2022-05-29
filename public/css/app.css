@@ -1,0 +1,793 @@
+body {
+  background-color: #ffffff;
+  color: #c77313;
+}
+main > header {
+  display: grid;
+  margin-top: 1em;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  background-color: #ffffff;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+main > header h1 img {
+  width: 250px;
+}
+main > header h1 {
+  margin: 0;
+}
+main > header a.button {
+  margin: 1em;
+  justify-self: center;
+}
+main > header span {
+  margin: 1em;
+  justify-self: center;
+}
+
+#content > footer {
+  display: grid;
+  margin-top: 1em;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  background-color: #ffffff;
+  margin-left: 1em;
+  margin-right: 1em;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+#auctions{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#public_auctions ul.auctions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#catalog{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#profile section.bottom_part {
+  float:none;
+  margin-top: 2em;
+}
+
+#profile section.bottom_part ul.auctions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+article.auction div.card.border-primary.mb-3{
+  height: 50em;
+  width: auto;
+}
+
+article.auction {
+  display: flex;
+  flex-direction: column;
+  height: 30em;
+  padding: 1em;
+  margin: 2em;
+}
+
+#auctions article.auction header {
+  display: flex;
+  align-items: center;
+}
+
+#public_auctions header h3 {
+  display: flex;
+  align-items: center;
+}
+
+#bid_history header h3 {
+  display: flex;
+  align-items: center;
+}
+
+.pagination main {
+	padding: 4rem 4rem 20rem; padding: 0 0 15rem;
+	width: 100%; height: 80vh;
+	box-sizing: border-box; overflow: hidden;
+	display: flex; flex-flow: column nowrap; justify-content: flex-end;
+}
+
+.pagination {
+	box-sizing: border-box;
+	width: 100%;
+	border: solid 1px red; border: none;
+	position: relative;
+	display: flex; flex-flow: row nowrap; justify-content: center; align-items: center;
+	#indicator {
+		width: 3rem; height: 3rem;
+		border-radius: 50%; background-color: #e8d170; visibility: hidden;
+		position: absolute; top: 50%; transform: translateY(-50%); left: 0; z-index: -1;
+	}
+	.a {
+		margin: 0 1.5rem 0 0; padding: .75rem 0 0; box-sizing: border-box;
+		border-radius: 50%;
+		width: 3rem; height: 3rem;
+		display: block;
+		font-size: 1.5rem; color: #3a5e77; text-decoration: none; font-weight: 700;
+		text-align: center; line-height: 100%;
+		&:last-of-type {margin-right: 0;}
+		&.active {
+		}
+	}
+}
+
+.pagination footer {
+	width: 100%; height: 20vh;
+	background-color: #09334f;
+	position: relative; z-index: 1;
+}
+
+article.auction li {
+  list-style-type: none;
+}
+
+article.auction li label {
+  display: flex;
+  align-items: baseline;
+}
+
+#auctions article.auction li label span {
+  margin-left: 2em;
+  flex-grow: 1;
+}
+
+#public_auctions article.auction li label span {
+  margin-left: 2em;
+  flex-grow: 1;
+}
+
+#auctions article.auction ul {
+  margin: 0;
+}
+
+#public_auctions article.auction ul {
+  margin: 0;
+}
+
+#catalog article.auction ul {
+  margin: 0;
+}
+
+#profile article.auction ul {
+  margin: 0;
+}
+
+#auctions article.auction input[type=text], input[type=number] {
+  background-color: white;
+  margin: 0;
+}
+
+#catalog article.auction input[type=text], input[type=number] {
+  background-color: white;
+  margin: 0;
+}
+
+article.search input[type=text]{
+  float: right;
+  width: 20%;
+}
+
+article.search{
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 1em;
+}
+
+#content {
+  padding: 1em;
+}
+
+#content label {
+  font-weight: normal;
+}
+#content > form {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 20em;
+  border: 1px solid #d2afe7;
+}
+#content > form .error {
+  font-weight: bold;
+  color: #ff3333;
+}
+#content > form input {
+  background-color: white;
+}
+@media (max-width: 70em) {
+  #auctions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  main > header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  main > header h1 {
+    grid-row-end: span 2;
+  }
+}
+@media (max-width: 40em) {
+  #auctions {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 25em) {
+  body {
+    margin: 0;
+  }
+  main > header {
+    margin: 0;
+    padding: 0.5em;
+  }
+  main > header span {
+    margin: 0;
+  }
+  #content form {
+    margin: 0;
+    max-width: 25em;
+  }
+  article.auction {
+    margin: 0;
+    border-bottom: 1px solid rgba(96, 108, 118, 0.4);
+  }
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+  border-color: #5a3ae8;
+}
+input[type=submit]{
+  background-color: #5a3ae8;
+  border-color: #5a3ae8;
+}
+input[type=submit]:hover{
+  background-color: #1835B8;
+  border-color: #1835B8;
+}
+
+#auction_page{
+  padding: 1em;
+  margin-left:4em;
+  align-items: center;
+  overflow: auto;
+}
+
+#auction_page li.image img{
+  display: flex;
+  float: left;
+  max-height: 45%;
+  max-width: 45%;
+
+  object-fit: contain;
+  align-items: baseline;
+}
+
+article.auction ul.images{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+article.auction li.image{
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+article.auction li.image img{
+  max-width:70%;
+  max-height:70%;
+}
+
+
+article.auction{
+  position: relative;
+}
+
+article.auction img{
+  margin: 5px auto;
+  max-width: 85%;
+  max-height: 60%;
+  object-fit: contain;
+}
+
+article#auction_page{
+  align-items: center;
+  justify-content: center;
+}
+
+#auction_page #details{
+  float:left;
+  padding: 1em;
+  margin-left:3em;
+  max-width: 25em;
+}
+
+#auction_page #comments{
+  float:left;
+  font-size: 15px;
+  padding: 1em;
+  margin-left:3em;
+  width: 47%;
+}
+
+#auction_page div#bids{
+  float:left;
+  padding: 1em;
+  font-size: 15px;
+  margin-right:6em;
+  max-width: 25em;
+}
+
+#auction_page footer, #balance footer{
+  clear: both;
+}
+
+#auction_page header a.follow {
+  margin-left: auto;
+  order:2;
+}
+
+
+#auction_page div.prevbids ul, #auction_page div#comments ul{
+  padding: 0;
+}
+
+ul.images{
+  padding: 0;
+}
+
+li.bid{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+li.comment{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+li.bid div{
+  font-size: 20px;
+  float: left;
+}
+
+#auction_page div.prevbids span.auction{
+  display: none;
+}
+
+#bid_h li.bid span.user{
+  display: none;
+}
+
+#auction_bids li.bid span.auction{
+  display: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 14px;
+  margin-right: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 15px;
+  margin: 20px;
+  box-shadow: inset 7px 10px 12px #f0f0f0;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#profile{
+  padding: 1em;
+  margin-left:4em;
+  margin-right:1em;
+}
+
+#profile article.profile h2 a.delete {
+  display: none;
+  float:right;
+  color: #c77313;
+  font-size: 20px;
+  margin-top: .5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  line-height: 1;
+}
+
+#profile article.profile h2:hover a.delete{
+  display: block;
+}
+
+#profile article.profile label.info{
+  width: 400px;
+}
+
+#profile article.profile label.info img{
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  object-fit:cover;
+  float: left;
+  margin-right: 1em;
+}
+
+#profile h3.buttons{
+  float: right;
+  position: relative;
+  width: 70%;
+}
+
+#profile span{
+  float:none;
+}
+
+#profile div.dashboard{
+  padding: 1em;
+  margin-left: 2em;
+}
+
+
+li.bid{
+  list-style-type: none;
+}
+
+li.image{
+  max-height: 75%;
+  object-fit: contain;
+  list-style-type: none;
+}
+
+article.auction ul{
+  list-style-type: none;
+}
+
+header.static_page{
+  margin-left: 2em;
+}
+
+section.static_page{
+  margin-left: 2em;
+  margin-right: 2em;
+  font-size: 20px;
+
+}
+
+section#about_page{
+  display: flex;
+}
+
+section.static_page img{
+  width: 50em;
+  margin-left: 1em;
+  display: block;
+  border-color: #e99b43;
+  border-style: solid;
+  opacity: 85%;
+}
+
+section.static_page#faq_page div.question{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+  width: 20em;
+}
+
+section.static_page#faq_page div.answer{
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+section.static_page#faq_page a{
+  text-decoration: underline;
+}
+
+section#comment_h li.comment, section#auction_comments li.comment{
+  margin: 2em;
+  display: block;
+}
+
+section#comment_h li.comment a, section#auction_comments li.comment a {
+  color:#5a3ae8;
+  text-decoration: none;
+}
+
+section#comment_h li.comment a:hover, section#auction_comments li.comment a:hover{
+  color:#1835B8;
+}
+
+section#comment_h li.comment label, section#auction_comments li.comment label{
+  font-size: 20px;
+}
+
+section#bid_h li.bid, section#auction_bids li.bid{
+  margin: 2em;
+  margin-left:0;
+  display: block;
+}
+
+section#bid_h li.bid a, section#auction_bids li.bid a {
+  color:#5a3ae8;
+  text-decoration: none;
+}
+
+section#bid_h li.bid a:hover, section#auction_bids li.bid a:hover{
+  color:#1835B8;
+}
+
+section#bid_h li.bid label, section#auction_bids li.bid label{
+  font-size: 20px;
+}
+
+article.edit_profile div{
+  font-size: 20px;
+  background-color: white;
+  margin: 1em;
+  margin-left: 2.5em;
+  width: 30em;
+}
+
+article.edit_auction div{
+  font-size: 20px;
+  background-color: white;
+  margin: 1em;
+  margin-left: 2.5em;
+  width: 30em;
+}
+
+#auction_page h2 a.delete {
+  display: none;
+  float:right;
+  color: #c77313;
+  font-size: 20px;
+  line-height: 1;
+  margin-top: .5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+#auction_page h2:hover a.delete{
+  display: block;
+}
+
+h2 a, div a{
+  color: #5a3ae8;
+  text-decoration: none;
+}
+
+h2 a:hover, div a:hover{
+  color: #1835B8;
+}
+
+header h2 {
+  margin-bottom: .5em;
+}
+
+div.card-body{
+  max-width: 348px;
+  max-height: 356px;
+}
+
+* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+li.notification{
+  list-style-type: none;
+}
+
+li.notification img{
+  width: 4em;
+  height: 4em;
+  margin-bottom: 1em;
+  border-radius: 50%;
+}
+
+li.admin_requests{
+  list-style-type: none;
+}
+
+li.user img{
+  width: 4em;
+  height: 4em;
+  margin-bottom: 1em;
+  border-radius: 50%;
+}
+
+li.user a{
+  color: #5a3ae8;
+  text-decoration: none;
+}
+
+li.user a:hover{
+  color: #1835B8;
+}
+
+.grid2 {
+  margin-left: 4em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#auction_comments, #bid_h, #auction_bids, #followers, section#following {
+  padding:1em;
+  list-style-type: none;
+
+}
+
+header #notifications {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+header #notifications .badge {
+  position: absolute;
+  top: -22px;
+  right: -22px;
+  padding: 10px 10px;
+  border-radius: 50%;
+  background: #fb8e00;
+  color: white;
+}
+
+span.badge {
+  display:block;
+}
+
+.checkbox_container{
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox_container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox_container input:checked ~ .checkmark {
+  background-color: #5a3ae8
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_container .checkmark:after {
+  left: 6px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+#balance{
+  overflow: auto;
+}
+
+#balance .transactions{
+  width: 100%;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  float:left;
+}
+
+#balance .transactions input[type=text],#balance .transactions input[type=number],#balance .transactions input[type=file]{
+  width:80%;
+}
+
+#balance .transactions div{
+  padding: 1em;
+  margin-left:3em;
+}
